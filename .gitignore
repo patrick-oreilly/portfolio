@@ -36,6 +36,12 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local tooling (editor/agent configs and design exploration artifacts, not part of the site)
+.impeccable/
+.codex/
+.cursor/
+PRODUCT.md
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
