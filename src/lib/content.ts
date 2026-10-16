@@ -6,7 +6,7 @@ export const meta = {
 };
 
 export const about = {
-  body: "Outside of internships and coursework, I build things that start from a question I actually want answered: can a model predict when I'm about to blunder at chess, can a group of specialist agents out-diagnose a single generalist one, can an AI game master run a coherent story for ten people at once. I play competitive chess for the Connacht team on Chess.com, and I've run the Great Limerick Run half marathon.",
+  body: "Outside of internships and coursework, I build things that start from a question I actually want answered: can a model predict when I'm about to blunder at chess, can a group of specialist agents out-diagnose a single generalist one, can an AI game master run a coherent story for ten people at once. I play competitive chess for the Connacht team on Chess.com, I've run the Great Limerick Run half marathon, and I recently gave a tech talk to 100+ students at ATU.",
 };
 
 export type TrajectoryEntry = {
