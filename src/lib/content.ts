@@ -27,7 +27,7 @@ export const trajectory: TrajectoryEntry[] = [
     role: "Innovation Engineering AI Intern",
     dates: "Jan 2026 — present",
     current: true,
-    summary: "Asked to stay on part-time after the internship, now building multi-agent systems and an MCP retrieval service on the innovation team.",
+    summary: "Asked to stay on part-time after the internship, now building autonomous agent workflows and an MCP retrieval service on the innovation team.",
     bullets: [
       "Prototypes AI proofs of concept and presents them directly to executive leadership, including CTOs, before production handoff.",
       "Co-built an AI tool that turns a manual spreadsheet process into customer upgrade insights in seconds, now being productised.",
