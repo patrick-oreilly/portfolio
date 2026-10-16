@@ -1,5 +1,4 @@
 import { references } from "@/lib/content";
-import WarpLink from "./WarpLink";
 
 const links = [
   { label: "About", href: "#about" },
@@ -19,15 +18,14 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
-          <a
-            href={references.resume}
-            download
-            className="rounded-full border border-rule-strong px-4 py-1.5 text-sm font-medium text-ink transition-colors hover:border-ink"
-          >
-            Resume
-          </a>
         </div>
-        <WarpLink href="/explore">✦ Try the interactive version</WarpLink>
+        <a
+          href={references.resume}
+          download
+          className="rounded-full border border-rule-strong px-4 py-1.5 text-sm font-medium text-ink transition-colors hover:border-ink"
+        >
+          Resume
+        </a>
       </div>
     </nav>
   );
