@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# patrickoreilly.dev
 
-## Getting Started
+Personal portfolio for Patrick O'Reilly — graduate software engineer, AI-focused.
+Live at [patrickoreilly.dev](https://www.patrickoreilly.dev).
 
-First, run the development server:
+A single-page site: one page of evidence for recruiters and hiring managers who are
+scanning fast and deciding whether to move to a screen.
+
+## Stack
+
+Next.js (App Router) · TypeScript · Tailwind CSS v4 · deployed on Vercel.
+
+The stack is a deliberate choice rather than a default — the site itself is meant to
+demonstrate the stack.
+
+## Running it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Layout
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/app/layout.tsx       metadata, viewport colours, Person structured data
+src/app/page.tsx         section order
+src/app/globals.css      design tokens (light + dark), base styles
+src/app/opengraph-image.tsx  generated 1200x630 share card
+src/app/robots.ts        robots.txt
+src/app/sitemap.ts       sitemap.xml
+src/components/          one file per page section, plus the theme toggle
+src/lib/content.ts       all page copy and project data
+src/lib/theme.ts         theme storage key and palette
+src/lib/boot.ts          the inline pre-paint script
+content/copy.md          long-form source copy
+public/                  resume PDF, photos, project figures
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Progressive enhancement
 
-## Learn More
+Most of the page sits inside a `Reveal` wrapper, which animates content in on
+scroll. That hidden state is gated behind a `.js` class on `<html>`, and nothing in
+the page is hidden without it — so a visitor whose JavaScript never arrives still
+gets the whole page as plain content rather than a blank scroll below the hero.
 
-To learn more about Next.js, take a look at the following resources:
+[boot.ts](src/lib/boot.ts) is a plain inline `<script>`, the first thing in `<body>`,
+so it runs while the parser is still working: it restores a stored theme, marks
+`<html>` as scriptable, and withdraws that mark after three seconds if React never
+turns up. [Reveal](src/components/Reveal.tsx) sets `window.__revealReady` on mount to
+cancel the withdrawal.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Editing content
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Page copy lives in [src/lib/content.ts](src/lib/content.ts) — hero, About, experience
+entries, and the six projects. Contact links and the resume path are in the same file
+under `references`. The project figures in `public/projects/` are real screenshots and
+diagrams; two projects are still in progress and deliberately carry no figure rather
+than an invented one.
 
-## Deploy on Vercel
+## Theming
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Colours are CSS custom properties in [src/app/globals.css](src/app/globals.css),
+each declared once as `light-dark(light, dark)`. With no `data-theme` on `<html>`
+they resolve against the OS preference, so that case is correct at first paint with
+no script at all — including the initial canvas colour, which is what stops a white
+flash on a dark-preferring device.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+A stored choice only has to override `color-scheme` on `<html>`:
+[boot.ts](src/lib/boot.ts) restores it before the parser reaches the page content,
+and [ThemeToggle](src/components/ThemeToggle.tsx) flips it and writes the choice back
+to `localStorage`. The toggle's icon is chosen in CSS from the same rules, so its
+markup is identical on the server and after hydration.
+
+Accents come in pairs: a solid fill (`--blue`, `--green`) for buttons, and a
+`--*-text` token for text sitting on the matching `--*-soft` surface. Because the
+text tokens are re-derived per mode, both accents clear 4.5:1 against whatever they
+actually appear on. Change a token, not a component.

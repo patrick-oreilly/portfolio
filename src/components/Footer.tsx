@@ -1,6 +1,10 @@
 import { references } from "@/lib/content";
 import Reveal from "./Reveal";
 
+// 44px minimum hit area: these are the conversion actions and recruiters triage on phones.
+const contactLink =
+  "inline-flex min-h-11 items-center px-2 text-ink-mute transition-colors hover:text-ink";
+
 export default function Footer() {
   return (
     <footer id="contact" className="border-t border-rule px-6 py-16 sm:px-10">
@@ -12,19 +16,19 @@ export default function Footer() {
               Happy to talk about agentic AI, it&rsquo;s pretty much all I talk about these days.
             </p>
           </div>
-          <div className="flex flex-wrap items-center gap-5 text-sm">
-            <a href={`mailto:${references.email}`} className="text-ink-mute transition-colors hover:text-ink">
+          <div className="flex flex-wrap items-center gap-2 text-sm">
+            <a href={`mailto:${references.email}`} className={contactLink}>
               Email
             </a>
-            <a href={references.github} target="_blank" rel="noreferrer" className="text-ink-mute transition-colors hover:text-ink">
+            <a href={references.github} target="_blank" rel="noreferrer" className={contactLink}>
               GitHub
             </a>
-            <a href={references.linkedin} target="_blank" rel="noreferrer" className="text-ink-mute transition-colors hover:text-ink">
+            <a href={references.linkedin} target="_blank" rel="noreferrer" className={contactLink}>
               LinkedIn
             </a>
             <a
               href={`mailto:${references.email}`}
-              className="rounded-full bg-green px-5 py-2.5 font-semibold text-white transition-transform hover:-translate-y-0.5"
+              className="rounded-full bg-green px-5 py-3 font-semibold text-white transition-transform hover:-translate-y-0.5"
             >
               Say hello
             </a>

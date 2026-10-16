@@ -14,6 +14,11 @@ export default function Reveal({
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Tells the boot script React is alive, so it leaves the .js class (and with it
+    // the reveal animations) switched on. If this never runs, the timeout in
+    // src/lib/boot.ts un-hides the content instead.
+    window.__revealReady = true;
+
     const el = ref.current;
     if (!el) return;
 

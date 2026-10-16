@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import AboutSection from "@/components/AboutSection";
 import Trajectory from "@/components/Trajectory";
 import WorkSection from "@/components/WorkSection";
+import Toolkit from "@/components/Toolkit";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
         <AboutSection />
         <Trajectory />
         <WorkSection />
+        <Toolkit />
       </main>
       <Footer />
     </>

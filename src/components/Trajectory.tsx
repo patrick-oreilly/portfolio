@@ -20,14 +20,14 @@ export default function Trajectory() {
               <div className="relative pl-9">
                 <span
                   className={`absolute left-0 top-1.5 h-[11px] w-[11px] rounded-full border-2 ${
-                    entry.current ? "border-green bg-green-soft" : "border-rule-strong bg-paper"
+                    entry.current ? "border-green-text bg-green-soft" : "border-rule-strong bg-paper"
                   }`}
                 />
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                   <span className="font-semibold">{entry.org}</span>
                   <span className="text-ink-mute">· {entry.role}</span>
                   {entry.current && (
-                    <span className="rounded-full bg-green-soft px-2 py-0.5 text-[11px] font-medium text-green">
+                    <span className="rounded-full bg-green-soft px-2 py-0.5 text-[11px] font-medium text-green-text">
                       current
                     </span>
                   )}

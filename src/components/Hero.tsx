@@ -28,6 +28,10 @@ export default function Hero() {
               Get in touch
             </a>
           </div>
+          <p className="mt-7 flex items-center gap-2 text-[13px] text-ink-mute">
+            <span aria-hidden className="h-1.5 w-1.5 shrink-0 rounded-full bg-green-text" />
+            {meta.availability}
+          </p>
         </div>
         <div className="flex justify-center lg:justify-end">
           <StatusWidget />

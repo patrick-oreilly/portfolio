@@ -2,6 +2,7 @@ export const meta = {
   kicker: "Graduate Software Engineer · AI-Focused · HPE",
   headline: "I build practical agentic workflows and production AI systems.",
   sub: "First Class Honours CS student at University of Galway, currently interning at HPE on the innovation team, building multi-agent workflows, one of which is already headed for production.",
+  availability: "Available for graduate software engineering roles from September 2027",
   location: "Galway, IE",
 };
 
@@ -30,11 +31,14 @@ export const trajectory: TrajectoryEntry[] = [
     summary: "Asked to stay on part-time after the internship, now building autonomous agent workflows and an MCP retrieval service on the innovation team.",
     bullets: [
       "Prototypes AI proofs of concept and presents them directly to executive leadership, including CTOs, before production handoff.",
+      "Key contributor to the innovation team's fastest-ever proof of concept to reach the product roadmap.",
       "Co-built an AI tool that turns a manual spreadsheet process into customer upgrade insights in seconds, now being productised.",
       "Designed autonomous multi-agent systems and tool-augmented LLM workflows, including an agent that pulls VM networking details through an MCP server for GreenLake Intelligence.",
       "Built an MCP data retrieval service on PostgreSQL with vector schemas, serving low-latency context downstream.",
+      "Containerised microservices with Docker on Kubernetes, securing service-to-service traffic with token-based OAuth.",
+      "Owns staging-to-production releases: regression suites, compliance checks, zero live regressions.",
     ],
-    stack: "Python · LangGraph · Google ADK · MCP · PostgreSQL · Kubernetes · Langfuse",
+    stack: "Python · LangGraph · Google ADK · MCP · PostgreSQL · Docker · Kubernetes · OAuth · Langfuse",
   },
   {
     id: "swe-intern",
@@ -55,7 +59,12 @@ export const trajectory: TrajectoryEntry[] = [
     role: "B.Sc. Computer Science & Information Technology",
     dates: "Sept 2023 — Sept 2027",
     current: true,
-    summary: "First Class Honours, Excellence Scholarship, University Scholar.",
+    summary:
+      "First Class Honours (Years 1–3). Excellence Scholarship (2023–24) and University Scholar (2024–25) for top-tier examination results.",
+    bullets: [
+      "Relevant coursework: Advanced Programming (93%), Data Comms & Networking (92%), Programming Paradigms (90%).",
+      "Leaving Certificate: 625 points, the maximum available.",
+    ],
     stack: "",
   },
 ];
@@ -159,6 +168,33 @@ export const projects: Project[] = [
       "Approach: build on SWE-agent or mini-SWE-agent's existing agent-computer interface; turn a supervisor-provided PetClinic assignment set (one reference repo, ~70 student submissions with real bugs) into a scored diagnosis benchmark with precision/recall metrics defined up front; run the general-purpose agent across all 70 repos as the baseline to beat; build the specialist agents plus a coordinator; rerun the full benchmark and compare against the baseline.",
     ],
     featured: true,
+  },
+];
+
+export type ToolkitGroup = {
+  label: string;
+  items: string;
+};
+
+export const toolkit: ToolkitGroup[] = [
+  {
+    label: "Languages",
+    items: "Python · C# · Java · C · TypeScript · Swift · SQL (PostgreSQL)",
+  },
+  {
+    label: "Backend & cloud",
+    items:
+      "Docker · Kubernetes · AWS (Lambda, DynamoDB, S3) · GCP · Spring Boot · FastAPI · React · REST · OAuth · CI/CD",
+  },
+  {
+    label: "AI & ML",
+    items:
+      "Agentic AI · Multi-agent systems · RAG · MCP · LangGraph · Google ADK · scikit-learn · Vector search · LLM evaluation · Langfuse",
+  },
+  {
+    label: "Practices",
+    items:
+      "TDD (PyTest) · Agile · System design · SOLID · Data pipelines · Production monitoring · Regression testing",
   },
 ];
 

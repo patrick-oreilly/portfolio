@@ -13,6 +13,8 @@ First Class Honours Computer Science student at the University of Galway, curren
 
 *(CTA buttons: View Projects / Download Resume)*
 
+**Availability line (shown under the CTAs):** Available for graduate software engineering roles from September 2027
+
 ---
 
 ## About

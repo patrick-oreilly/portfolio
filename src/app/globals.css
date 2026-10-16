@@ -1,17 +1,33 @@
 @import "tailwindcss";
 
+/* Every token is declared once as light-dark(), resolving against the used
+   color-scheme. That means the OS-preference case is correct at first paint with
+   no script — including the initial canvas colour, which is what stops a white
+   flash on a dark-preferring device. A stored choice only has to override
+   color-scheme on <html>; see src/lib/theme.ts. */
 :root {
-  --paper: #fcfcfb;
-  --paper-raised: #ffffff;
-  --ink: #16181d;
-  --ink-soft: #3d4148;
-  --ink-mute: #6b7078;
-  --rule: #e6e5e0;
-  --rule-strong: #d6d5ce;
-  --blue: #2457e8;
-  --blue-soft: #eaf0fe;
-  --green: #0f8f5f;
-  --green-soft: #e6f6ee;
+  color-scheme: light dark;
+  --paper: light-dark(#fcfcfb, #0f1114);
+  --paper-raised: light-dark(#ffffff, #171a1f);
+  --ink: light-dark(#16181d, #f0f0ee);
+  --ink-soft: light-dark(#3d4148, #b9bec6);
+  --ink-mute: light-dark(#6b7078, #8d939c);
+  --rule: light-dark(#e6e5e0, #262a30);
+  --rule-strong: light-dark(#d6d5ce, #383d45);
+  --blue: light-dark(#2457e8, #3a68f0);
+  --blue-soft: light-dark(#eaf0fe, #16233f);
+  --blue-text: light-dark(#2457e8, #a8c0ff);
+  --green: #0b7a50;
+  --green-soft: light-dark(#e6f6ee, #12352a);
+  --green-text: light-dark(#0b7a50, #4ec08d);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -24,14 +40,17 @@
   --color-rule-strong: var(--rule-strong);
   --color-blue: var(--blue);
   --color-blue-soft: var(--blue-soft);
+  --color-blue-text: var(--blue-text);
   --color-green: var(--green);
   --color-green-soft: var(--green-soft);
+  --color-green-text: var(--green-text);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
 }
 
 html {
   scroll-behavior: smooth;
+  scrollbar-color: var(--rule-strong) var(--paper);
 }
 
 body {
@@ -40,11 +59,42 @@ body {
     var(--paper);
   color: var(--ink);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  caret-color: var(--ink);
+  accent-color: var(--blue);
+}
+
+a {
+  text-underline-offset: 3px;
 }
 
 ::selection {
   background: var(--blue);
   color: #fff;
+}
+
+/* ThemeToggle shows the icon for the mode it will switch to. Resolved from
+   data-theme when a choice is stored, otherwise straight from the OS preference
+   so the button is correct at first paint too. */
+.theme-icon-sun {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-icon-moon {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-icon-sun {
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-icon-moon {
+    display: none;
+  }
+
+  :root:not([data-theme="light"]) .theme-icon-sun {
+    display: block;
+  }
 }
 
 a:focus-visible,
@@ -54,19 +104,22 @@ button:focus-visible {
   border-radius: 2px;
 }
 
-.reveal {
+/* Hidden only while scripting is known to be working. The boot script adds .js and
+   withdraws it if React never arrives, so a bundle that fails to load falls back to
+   plainly visible content rather than leaving most of the page blank. */
+.js .reveal {
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.reveal.is-visible {
+.js .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  .js .reveal {
     opacity: 1;
     transform: none;
     transition: none;

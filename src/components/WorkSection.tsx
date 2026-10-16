@@ -32,7 +32,7 @@ function ProjectCard({ p, delayMs }: { p: (typeof projects)[number]; delayMs: nu
             <span className="font-mono text-[11px] uppercase tracking-[0.06em] text-ink-mute">{p.kicker}</span>
             <span
               className={`rounded-full px-2.5 py-0.5 text-[11px] font-medium ${
-                p.status === "complete" ? "bg-green-soft text-green" : "bg-blue-soft text-blue"
+                p.status === "complete" ? "bg-green-soft text-green-text" : "bg-blue-soft text-blue-text"
               }`}
             >
               {p.statusLabel}
@@ -52,7 +52,7 @@ function ProjectCard({ p, delayMs }: { p: (typeof projects)[number]; delayMs: nu
                 href={p.link}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full bg-ink px-4 py-1.5 text-[12.5px] font-semibold text-white transition-transform hover:-translate-y-0.5"
+                className="rounded-full bg-ink px-4 py-1.5 text-[12.5px] font-semibold text-paper transition-transform hover:-translate-y-0.5"
               >
                 Code →
               </a>
@@ -73,13 +73,7 @@ export default function WorkSection() {
       <div className="mx-auto max-w-[1180px]">
         <Reveal>
           <div className="mb-10 flex items-center justify-between gap-4">
-            <div>
-              <div className="mb-3 flex items-center gap-2 text-[13px] font-medium text-ink-mute">
-                <span className="h-1.5 w-1.5 rounded-full bg-blue" />
-                Selected work
-              </div>
-              <h2 className="text-2xl font-bold tracking-[-0.01em] sm:text-3xl">Six projects, two still running</h2>
-            </div>
+            <h2 className="text-2xl font-bold tracking-[-0.01em] sm:text-3xl">Selected work</h2>
             <a
               href="https://github.com/patrick-oreilly"
               target="_blank"
