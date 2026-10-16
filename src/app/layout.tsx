@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Patrick O'Reilly — Portfolio",
   description:
-    "Patrick O'Reilly — graduate software engineer building agentic AI systems. Experience at HPE, and a record of six projects from coursework to production.",
+    "Patrick O'Reilly — graduate software engineer building agentic AI systems. Experience at HPE, and a record of six projects from coursework to shipped systems.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

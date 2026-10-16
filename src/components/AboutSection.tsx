@@ -5,9 +5,9 @@ import Reveal from "./Reveal";
 export default function AboutSection() {
   return (
     <section id="about" className="border-t border-rule px-6 py-16 sm:px-10">
-      <Reveal>
-        <div className="mx-auto flex max-w-[1180px] flex-col gap-10 lg:flex-row lg:items-start">
-          <div className="flex flex-1 flex-col items-start gap-8 sm:flex-row sm:items-center">
+      <div className="mx-auto max-w-[1180px]">
+        <Reveal>
+          <div className="flex flex-col items-start gap-8 sm:flex-row sm:items-center">
             <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-full border border-rule-strong sm:h-44 sm:w-44">
               <Image
                 src="/about/headshot.png"
@@ -19,22 +19,36 @@ export default function AboutSection() {
             </div>
             <p className="max-w-[68ch] text-[15px] leading-relaxed text-ink-soft">{about.body}</p>
           </div>
-          <figure className="w-full shrink-0 sm:w-72">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-rule-strong">
-              <Image
-                src="/about/speaking.jpg"
-                alt="Patrick O'Reilly giving a tech talk to 100+ students at ATU"
-                fill
-                className="object-cover"
-                sizes="(min-width: 640px) 288px, 100vw"
-              />
+        </Reveal>
+
+        <Reveal delayMs={80}>
+          <div className="mt-14 border-t border-rule pt-10">
+            <div className="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
+              <div className="max-w-[40ch]">
+                <div className="mb-3 flex items-center gap-2 text-[13px] font-medium text-ink-mute">
+                  <span className="h-1.5 w-1.5 rounded-full bg-blue" />
+                  Public speaking
+                </div>
+                <p className="text-[15px] leading-relaxed text-ink-soft">
+                  I recently gave a tech talk to 100+ students at ATU on multi-agent systems and
+                  what I've learned building them at HPE.
+                </p>
+              </div>
+              <div className="w-full shrink-0 sm:w-[420px]">
+                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl border border-rule-strong">
+                  <Image
+                    src="/about/speaking.jpg"
+                    alt="Patrick O'Reilly giving a tech talk to 100+ students at ATU"
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 640px) 420px, 100vw"
+                  />
+                </div>
+              </div>
             </div>
-            <figcaption className="mt-2 text-[13px] text-ink-mute">
-              Giving a tech talk to 100+ students at ATU.
-            </figcaption>
-          </figure>
-        </div>
-      </Reveal>
+          </div>
+        </Reveal>
+      </div>
     </section>
   );
 }

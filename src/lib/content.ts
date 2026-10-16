@@ -1,12 +1,12 @@
 export const meta = {
   kicker: "Graduate Software Engineer · AI-Focused · HPE",
   headline: "I build agentic AI systems that survive production.",
-  sub: "First Class Honours CS student at University of Galway, currently interning at HPE on multi-agent workflows that run in production, not just demos.",
+  sub: "First Class Honours CS student at University of Galway, currently interning at HPE on multi-agent workflows that actually ship, not just demos.",
   location: "Galway, IE",
 };
 
 export const about = {
-  body: "Outside of internships and coursework, I build things that start from a question I actually want answered: can a model predict when I'm about to blunder at chess, can a group of specialist agents out-diagnose a single generalist one, can an AI game master run a coherent story for ten people at once. I play competitive chess for the Connacht team on Chess.com, I've run the Great Limerick Run half marathon, and I recently gave a tech talk to 100+ students at ATU.",
+  body: "Outside of internships and coursework, I build things that start from a question I actually want answered: can a model predict when I'm about to blunder at chess, can a group of specialist agents out-diagnose a single generalist one, can an AI game master run a coherent story for ten people at once. I play competitive chess for the Connacht team on Chess.com, and I've run the Great Limerick Run half marathon.",
 };
 
 export type TrajectoryEntry = {
@@ -27,7 +27,7 @@ export const trajectory: TrajectoryEntry[] = [
     role: "Innovation Engineering AI Intern",
     dates: "Jan 2026 — present",
     current: true,
-    summary: "Asked to stay on part-time after the internship to keep building multi-agent workflows, now presenting to executive leadership before production handoff.",
+    summary: "Asked to stay on part-time after the internship, now building multi-agent systems and an MCP retrieval service on the innovation team.",
     bullets: [
       "Prototypes AI proofs of concept and presents them directly to executive leadership, including CTOs, before production handoff.",
       "Co-built an AI tool that turns a manual spreadsheet process into customer upgrade insights in seconds, now being productised.",
