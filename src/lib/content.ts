@@ -1,6 +1,6 @@
 export const meta = {
   kicker: "Graduate Software Engineer · AI-Focused · HPE",
-  headline: "I build agentic AI systems that survive production.",
+  headline: "I build practical agentic workflows and production AI systems.",
   sub: "First Class Honours CS student at University of Galway, currently interning at HPE on multi-agent workflows that actually ship, not just demos.",
   location: "Galway, IE",
 };
@@ -76,21 +76,6 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "fyp-multi-agent-diagnosis",
-    title: "Multi-Agent Software Diagnosis System",
-    status: "in-progress",
-    statusLabel: "In progress",
-    kicker: "Final Year Project · 2026/27",
-    stack: "Python · LLM Agents · SWE-agent / mini-SWE-agent · Benchmarking",
-    summary:
-      "Research question: can a team of specialist AI agents diagnose problems in a software system more effectively than a single general-purpose coding agent?",
-    body: [
-      "Most AI coding agents are generalists: one agent, one context window, trying to hold architecture, tests, performance, and documentation in its head at once. This project tests whether splitting that work across specialist agents (architecture, code quality, testing, performance, usability, accessibility, documentation), coordinated by a reviewing agent, actually produces better diagnoses rather than just different ones.",
-      "Approach: build on SWE-agent or mini-SWE-agent's existing agent-computer interface; turn a supervisor-provided PetClinic assignment set (one reference repo, ~70 student submissions with real bugs) into a scored diagnosis benchmark with precision/recall metrics defined up front; run the general-purpose agent across all 70 repos as the baseline to beat; build the specialist agents plus a coordinator; rerun the full benchmark and compare against the baseline.",
-    ],
-    featured: true,
-  },
-  {
     slug: "ascend",
     title: "Ascend — AI-Powered Study Platform",
     status: "complete",
@@ -108,18 +93,6 @@ export const projects: Project[] = [
       { src: "/projects/ascend-frontend-screenshot.png", alt: "Ascend frontend product UI" },
     ],
     featured: true,
-  },
-  {
-    slug: "chess-blunder-risk",
-    title: "Chess Blunder Risk",
-    status: "in-progress",
-    statusLabel: "In progress",
-    kicker: "CT4101 Machine Learning coursework",
-    stack: "Python · scikit-learn · Stockfish",
-    summary:
-      "Can a model predict whether a player is about to blunder on their next move? A binary classifier trained on ~4,300 of my own Chess.com games (~250k board positions), labelled with Stockfish 16. I play competitive chess for the Connacht team, and this one started as a question about my own games before it became coursework.",
-    link: "https://github.com/patrick-oreilly/chess-blunder-risk",
-    featured: false,
   },
   {
     slug: "route-scouter",
@@ -159,6 +132,33 @@ export const projects: Project[] = [
     link: "https://github.com/patrick-oreilly/theFinalsCurse",
     images: [{ src: "/projects/finals-curse-banner.png", alt: "The Finals Curse game banner" }],
     featured: false,
+  },
+  {
+    slug: "chess-blunder-risk",
+    title: "Chess Blunder Risk",
+    status: "in-progress",
+    statusLabel: "In progress",
+    kicker: "CT4101 Machine Learning coursework",
+    stack: "Python · scikit-learn · Stockfish",
+    summary:
+      "Can a model predict whether a player is about to blunder on their next move? A binary classifier trained on ~4,300 of my own Chess.com games (~250k board positions), labelled with Stockfish 16. I play competitive chess for the Connacht team, and this one started as a question about my own games before it became coursework.",
+    link: "https://github.com/patrick-oreilly/chess-blunder-risk",
+    featured: false,
+  },
+  {
+    slug: "fyp-multi-agent-diagnosis",
+    title: "Multi-Agent Software Diagnosis System",
+    status: "in-progress",
+    statusLabel: "In progress",
+    kicker: "Final Year Project · 2026/27",
+    stack: "Python · LLM Agents · SWE-agent / mini-SWE-agent · Benchmarking",
+    summary:
+      "Research question: can a team of specialist AI agents diagnose problems in a software system more effectively than a single general-purpose coding agent?",
+    body: [
+      "Most AI coding agents are generalists: one agent, one context window, trying to hold architecture, tests, performance, and documentation in its head at once. This project tests whether splitting that work across specialist agents (architecture, code quality, testing, performance, usability, accessibility, documentation), coordinated by a reviewing agent, actually produces better diagnoses rather than just different ones.",
+      "Approach: build on SWE-agent or mini-SWE-agent's existing agent-computer interface; turn a supervisor-provided PetClinic assignment set (one reference repo, ~70 student submissions with real bugs) into a scored diagnosis benchmark with precision/recall metrics defined up front; run the general-purpose agent across all 70 repos as the baseline to beat; build the specialist agents plus a coordinator; rerun the full benchmark and compare against the baseline.",
+    ],
+    featured: true,
   },
 ];
 
