@@ -49,8 +49,13 @@
 }
 
 html {
-  scroll-behavior: smooth;
   scrollbar-color: var(--rule-strong) var(--paper);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
