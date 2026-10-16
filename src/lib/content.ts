@@ -1,7 +1,7 @@
 export const meta = {
   kicker: "Graduate Software Engineer · AI-Focused · HPE",
   headline: "I build agentic AI systems that survive production.",
-  sub: "First Class Honours CS student at University of Galway. Two internships at HPE building multi-agent workflows that ship — not just demos.",
+  sub: "First Class Honours CS student at University of Galway, currently interning at HPE on multi-agent workflows that run in production, not just demos.",
   location: "Galway, IE",
 };
 
@@ -30,7 +30,7 @@ export const trajectory: TrajectoryEntry[] = [
     summary: "Multi-agent workflows and MCP retrieval, presented to executive leadership before production handoff.",
     bullets: [
       "Prototypes AI proofs of concept and presents them directly to executive leadership, including CTOs, before production handoff.",
-      "Co-built an AI tool that turned a manual spreadsheet process into customer upgrade insights in seconds — now being productised.",
+      "Co-built an AI tool that turns a manual spreadsheet process into customer upgrade insights in seconds, now being productised.",
       "Designed autonomous multi-agent systems and tool-augmented LLM workflows to automate complex processes.",
       "Built an MCP data retrieval service on PostgreSQL with vector schemas, serving low-latency context downstream.",
     ],
@@ -85,8 +85,8 @@ export const projects: Project[] = [
     summary:
       "Research question: can a team of specialist AI agents diagnose problems in a software system more effectively than a single general-purpose coding agent?",
     body: [
-      "Most AI coding agents are generalists — one agent, one context window, trying to hold architecture, tests, performance, and documentation in its head at once. This project tests whether splitting that up into specialist agents (architecture, code quality, testing, performance, usability, accessibility, documentation) coordinated by a reviewing agent actually produces better diagnoses — not just different ones.",
-      "Approach: build on SWE-agent or mini-SWE-agent's existing agent-computer interface; turn a supervisor-provided PetClinic assignment set — one reference repo, ~70 student submissions with real bugs — into a scored diagnosis benchmark with precision/recall metrics defined up front; run the general-purpose agent across all 70 repos as the baseline to beat; build the specialist agents plus a coordinator; rerun the full benchmark and compare against the baseline.",
+      "Most AI coding agents are generalists: one agent, one context window, trying to hold architecture, tests, performance, and documentation in its head at once. This project tests whether splitting that work across specialist agents (architecture, code quality, testing, performance, usability, accessibility, documentation), coordinated by a reviewing agent, actually produces better diagnoses rather than just different ones.",
+      "Approach: build on SWE-agent or mini-SWE-agent's existing agent-computer interface; turn a supervisor-provided PetClinic assignment set (one reference repo, ~70 student submissions with real bugs) into a scored diagnosis benchmark with precision/recall metrics defined up front; run the general-purpose agent across all 70 repos as the baseline to beat; build the specialist agents plus a coordinator; rerun the full benchmark and compare against the baseline.",
     ],
     featured: true,
   },
@@ -100,8 +100,8 @@ export const projects: Project[] = [
     summary:
       "A study platform that turns PDFs and lecture notes into structured notes, auto-generated quizzes, and a conversational study assistant, built across a 5-service microservices backend.",
     body: [
-      "Built 2 of 5 services plus the corresponding frontend: a notes service — serverless (Spring Boot on AWS Lambda), handling rich-text note CRUD and PDF ingestion via S3 presigned URLs and Apache PDFBox — and a generation service, a Google ADK agent that takes a PDF snapshot plus a natural-language request and returns structured notes, quizzes, or a tutoring conversation depending on intent.",
-      "The interesting problem wasn't the AI call itself — it was making the generation agent intent-aware and wiring a serverless PDF pipeline that stays fast under presigned-URL upload/download without a server in the loop.",
+      "Built 2 of 5 services plus the corresponding frontend: a notes service (serverless, Spring Boot on AWS Lambda, handling rich-text note CRUD and PDF ingestion via S3 presigned URLs and Apache PDFBox), and a generation service, a Google ADK agent that takes a PDF snapshot plus a natural-language request and returns structured notes, quizzes, or a tutoring conversation depending on intent.",
+      "The interesting problem wasn't the AI call itself: it was making the generation agent intent-aware and wiring a serverless PDF pipeline that stays fast under presigned-URL upload and download without a server in the loop.",
     ],
     images: [
       { src: "/projects/ascend-generation-diagram.png", alt: "Ascend generation service system design diagram" },
@@ -117,7 +117,7 @@ export const projects: Project[] = [
     kicker: "CT4101 Machine Learning coursework",
     stack: "Python · scikit-learn · Stockfish",
     summary:
-      "Can a model predict whether a player is about to blunder on their next move? A binary classifier trained on ~4,300 of my own Chess.com games (~250k board positions), labelled with Stockfish 16. I play competitive chess for the Connacht team — this one started as a question about my own games before it became coursework.",
+      "Can a model predict whether a player is about to blunder on their next move? A binary classifier trained on ~4,300 of my own Chess.com games (~250k board positions), labelled with Stockfish 16. I play competitive chess for the Connacht team, and this one started as a question about my own games before it became coursework.",
     link: "https://github.com/patrick-oreilly/chess-blunder-risk",
     featured: false,
   },

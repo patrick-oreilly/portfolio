@@ -49,7 +49,7 @@ export default function WorkSection() {
                 ) : (
                   <div className="flex h-14 items-center justify-center border-b border-rule bg-rule/20">
                     <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-ink-mute">
-                      No figure yet — in progress
+                      No figure yet · in progress
                     </span>
                   </div>
                 )}

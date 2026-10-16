@@ -57,7 +57,7 @@ export default function StatusWidget() {
           <div className="font-mono text-[10.5px] uppercase tracking-[0.06em] text-ink-mute">record</div>
           <div key={idx} className="mt-1.5 text-sm">
             <span className="font-medium">{current.label}</span>
-            <span className="text-ink-mute"> — {current.status}</span>
+            <span className="text-ink-mute"> · {current.status}</span>
           </div>
         </div>
       </div>
