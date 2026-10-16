@@ -30,8 +30,7 @@ export default function AboutSection() {
                   Public speaking
                 </div>
                 <p className="text-[15px] leading-relaxed text-ink-soft">
-                  I recently gave a tech talk to 100+ students at ATU on autonomous agents and
-                  what I've learned building them at HPE.
+                  I recently gave a tech talk to 100+ students at ATU on what I've learned at HPE.
                 </p>
               </div>
               <div className="w-full shrink-0 sm:w-[420px]">
