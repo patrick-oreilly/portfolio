@@ -13,7 +13,7 @@ export default function WorkSection() {
                 <span className="h-1.5 w-1.5 rounded-full bg-blue" />
                 Selected work
               </div>
-              <h2 className="text-2xl font-bold tracking-[-0.01em] sm:text-3xl">Five projects, two still running</h2>
+              <h2 className="text-2xl font-bold tracking-[-0.01em] sm:text-3xl">Six projects, two still running</h2>
             </div>
             <a
               href="https://github.com/patrick-oreilly"

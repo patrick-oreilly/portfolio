@@ -147,6 +147,19 @@ export const projects: Project[] = [
     images: [{ src: "/projects/whatnext-screenshot.png", alt: "What Next? app screenshot" }],
     featured: false,
   },
+  {
+    slug: "the-finals-curse",
+    title: "The Finals Curse",
+    status: "complete",
+    statusLabel: "Complete",
+    kicker: "Independent",
+    stack: "Unity 6 (URP) · C#",
+    summary:
+      "A 2D puzzle-platformer: a cursed basketball player dunks through five mystical levels to escape before the NBA Finals. Custom ball-throw physics, a gravity-flip ability, and enemy AI built on state machines, all on a modular component-based architecture.",
+    link: "https://github.com/patrick-oreilly/theFinalsCurse",
+    images: [{ src: "/projects/finals-curse-banner.png", alt: "The Finals Curse game banner" }],
+    featured: false,
+  },
 ];
 
 export const references = {
