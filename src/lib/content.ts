@@ -1,12 +1,12 @@
 export const meta = {
   kicker: "Graduate Software Engineer · AI-Focused · HPE",
   headline: "I build practical agentic workflows and production AI systems.",
-  sub: "First Class Honours CS student at University of Galway, currently interning at HPE on multi-agent workflows that actually ship, not just demos.",
+  sub: "First Class Honours CS student at University of Galway, currently interning at HPE on the innovation team, building multi-agent workflows, one of which is already headed for production.",
   location: "Galway, IE",
 };
 
 export const about = {
-  body: "Outside of internships and coursework, I build things that start from a question I actually want answered: can a model predict when I'm about to blunder at chess, can a group of specialist agents out-diagnose a single generalist one, can an AI game master run a coherent story for ten people at once. I play competitive chess for the Connacht team on Chess.com, and I've run the Great Limerick Run half marathon.",
+  body: "Outside of internships and coursework, I build things that start from a question I actually want answered rather than a feature that'd look good on a list. Can a model predict when I'm about to blunder at chess, since I play competitive chess for the Connacht team on Chess.com. Can a handful of specialist agents actually diagnose a bug better than one generalist trying to hold the whole system in its head. Can an AI game master keep a coherent story running for ten people at once without the whole thing falling apart. I've also run the Great Limerick Run half marathon.",
 };
 
 export type TrajectoryEntry = {
@@ -31,7 +31,7 @@ export const trajectory: TrajectoryEntry[] = [
     bullets: [
       "Prototypes AI proofs of concept and presents them directly to executive leadership, including CTOs, before production handoff.",
       "Co-built an AI tool that turns a manual spreadsheet process into customer upgrade insights in seconds, now being productised.",
-      "Designed autonomous multi-agent systems and tool-augmented LLM workflows to automate complex processes.",
+      "Designed autonomous multi-agent systems and tool-augmented LLM workflows, including an agent that pulls VM networking details through an MCP server for GreenLake Intelligence.",
       "Built an MCP data retrieval service on PostgreSQL with vector schemas, serving low-latency context downstream.",
     ],
     stack: "Python · LangGraph · Google ADK · MCP · PostgreSQL · Kubernetes · Langfuse",

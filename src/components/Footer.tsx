@@ -9,7 +9,7 @@ export default function Footer() {
           <div>
             <h2 className="text-2xl font-bold tracking-[-0.01em]">Get in touch</h2>
             <p className="mt-2 max-w-[48ch] text-sm text-ink-mute">
-              Happy to chat about agentic AI, autonomous agents, or applied ML.
+              Happy to talk about agentic AI, it&rsquo;s pretty much all I talk about these days.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-5 text-sm">
