@@ -220,6 +220,7 @@ export default function ChessGame({ onClose }: { onClose: () => void }) {
     pairs.push([moves[i], moves[i + 1]]);
   }
 
+  const yourFirstMoveMade = moves.some((m) => m.color === player);
   const yours = blunders.filter((b) => b.color === player).length;
   const mine = blunders.length - yours;
   const moveCount = Math.ceil(moves.length / 2);
@@ -247,7 +248,9 @@ export default function ChessGame({ onClose }: { onClose: () => void }) {
         {view === "game" && !result && (
           <>
             <div className="flex flex-wrap items-center justify-between gap-3">
-              {moves.length === 0 ? (
+              {/* Until you've moved, you can still switch sides. As Black the bot
+                  opens straight away, so "no moves yet" would hide this. */}
+              {!yourFirstMoveMade ? (
                 <div className="inline-flex rounded-full border border-rule-strong p-0.5 text-[12.5px] font-medium">
                   {(["w", "b"] as const).map((c) => (
                     <button
@@ -281,7 +284,7 @@ export default function ChessGame({ onClose }: { onClose: () => void }) {
               </ol>
             )}
             <div className="mt-auto flex gap-2">
-              {moves.length > 0 && (
+              {yourFirstMoveMade && (
                 <button
                   type="button"
                   onClick={resign}
