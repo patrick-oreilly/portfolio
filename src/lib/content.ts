@@ -1,5 +1,5 @@
 export const meta = {
-  kicker: "Graduate Software Engineer · AI-Focused · HPE",
+  kicker: "Final-Year CS Student · AI Intern at HPE",
   headline: "I build practical agentic workflows and production AI systems.",
   sub: "First Class Honours CS student at University of Galway, currently interning at HPE on the innovation team, building multi-agent workflows, one of which is already headed for production.",
   availability: "Available for graduate software engineering roles from September 2027",

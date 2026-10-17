@@ -36,7 +36,7 @@ export default function Footer() {
         </div>
       </Reveal>
       <div className="mx-auto mt-14 flex max-w-[1180px] flex-col gap-2 border-t border-rule pt-6 text-[12px] text-ink-mute sm:flex-row sm:items-center sm:justify-between">
-        <span>© 2026 Patrick O&rsquo;Reilly · Graduate Software Engineer</span>
+        <span>© 2026 Patrick O&rsquo;Reilly · Final-Year CS Student</span>
         <span className="font-mono">GitHub · LinkedIn · Next.js · Tailwind</span>
       </div>
     </footer>

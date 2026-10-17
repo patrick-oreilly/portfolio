@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 const siteUrl = "https://www.patrickoreilly.dev";
 const siteDescription =
-  "Patrick O'Reilly, graduate software engineer building agentic AI systems. Interning at HPE, with selected work in production AI and LLM evaluation.";
+  "Patrick O'Reilly, final-year computer science student building agentic AI systems. Interning at HPE, with selected work in production AI and LLM evaluation.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -29,12 +29,12 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: "Patrick O'Reilly",
     locale: "en_IE",
-    title: "Patrick O'Reilly — Graduate Software Engineer",
+    title: "Patrick O'Reilly — Final-Year CS Student · AI Intern at HPE",
     description: siteDescription,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Patrick O'Reilly — Graduate Software Engineer",
+    title: "Patrick O'Reilly — Final-Year CS Student · AI Intern at HPE",
     description: siteDescription,
   },
 };
@@ -48,7 +48,7 @@ const personSchema = {
   "@type": "Person",
   name: "Patrick O'Reilly",
   url: siteUrl,
-  jobTitle: "Graduate Software Engineer",
+  jobTitle: "Innovation Engineering AI Intern",
   alumniOf: { "@type": "CollegeOrUniversity", name: "University of Galway" },
   sameAs: [
     "https://github.com/patrick-oreilly",
