@@ -1,28 +1,10 @@
 "use client";
 
-import { THEME_COLORS, THEME_STORAGE_KEY, type Theme } from "@/lib/theme";
+import { getCurrentTheme, setTheme } from "@/lib/theme";
 
 export default function ThemeToggle() {
   function toggle() {
-    const root = document.documentElement;
-    const stored = root.dataset.theme;
-    const current: Theme =
-      stored === "light" || stored === "dark"
-        ? stored
-        : window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light";
-    const next: Theme = current === "dark" ? "light" : "dark";
-
-    root.dataset.theme = next;
-    try {
-      localStorage.setItem(THEME_STORAGE_KEY, next);
-    } catch {
-      // storage can be blocked; the theme still applies for this page view
-    }
-    document
-      .querySelector('meta[name="theme-color"]')
-      ?.setAttribute("content", THEME_COLORS[next]);
+    setTheme(getCurrentTheme() === "dark" ? "light" : "dark");
   }
 
   return (

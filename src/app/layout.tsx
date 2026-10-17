@@ -73,6 +73,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-paper text-ink">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-paper"
+        >
+          Skip to content
+        </a>
         {/* A plain inline tag, not next/script: that strategy ships the code inside the
             RSC payload, so it only runs once the client runtime is up. This has to
             execute while the parser is still working, before anything paints. */}

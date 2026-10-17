@@ -79,6 +79,7 @@ export type Project = {
   summary: string;
   body?: string[];
   link?: string;
+  secondaryLink?: { label: string; href: string };
   images?: { src: string; alt: string }[];
   featured: boolean;
 };
@@ -152,6 +153,7 @@ export const projects: Project[] = [
     summary:
       "Can a model predict whether a player is about to blunder on their next move? A binary classifier trained on ~4,300 of my own Chess.com games (~250k board positions), labelled with Stockfish 16. I play chess with a casual club team on Chess.com, and this one started as a question about my own games before it became coursework.",
     link: "https://github.com/patrick-oreilly/chess-blunder-risk",
+    secondaryLink: { label: "Chess.com →", href: "https://www.chess.com/member/patrickoreilly2" },
     featured: false,
   },
   {
