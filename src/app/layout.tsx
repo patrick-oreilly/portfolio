@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { bootScript } from "@/lib/boot";
 import { THEME_COLORS } from "@/lib/theme";
 import "./globals.css";
@@ -81,6 +82,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
+        <Analytics />
       </body>
     </html>
   );
