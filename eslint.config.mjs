@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Vendored third-party engine builds (minified); see public/engines/README.txt.
+    "public/engines/**",
   ]),
 ]);
 

@@ -74,21 +74,23 @@ export default function ChessGame({ onClose }: { onClose: () => void }) {
   const [result, setResult] = useState<Result | null>(null);
   const [thinking, setThinking] = useState(false);
   const [botName, setBotName] = useState<string | null>(null);
+  const [engineFailed, setEngineFailed] = useState<"bot" | "review" | null>(null);
   const [view, setView] = useState<"game" | "review">("game");
   const [selected, setSelected] = useState<number | null>(null);
 
   const analyse = useCallback((index: number, fen: string) => {
     const id = gameId.current;
-    engines().stockfish.then((sf) =>
-      sf.analyse(fen).then((ev) => {
+    engines()
+      .stockfish.then((sf) => sf.analyse(fen))
+      .then((ev) => {
         if (gameId.current !== id) return;
         setEvals((prev) => {
           const next = [...prev];
           next[index] = ev;
           return next;
         });
-      }),
-    );
+      })
+      .catch(() => setEngineFailed((f) => f ?? "review"));
   }, []);
 
   const play = useCallback(
@@ -112,14 +114,23 @@ export default function ChessGame({ onClose }: { onClose: () => void }) {
       const turn = ++botTurn.current;
       const c = chess.current;
       setThinking(true);
-      const [bot, book] = await Promise.all([engines().bot, engines().book]);
-      const legal = c.moves({ verbose: true }).map(toUci);
-      const fromBook = c.history().length < BOOK_PLIES ? bookMove(book, c.fen()) : null;
-      const allFens = [START_FEN, ...c.history({ verbose: true }).map((m) => m.after)];
-      const [uci] = await Promise.all([
-        fromBook && legal.includes(fromBook) ? fromBook : bot.pick(allFens, legal),
-        new Promise((r) => setTimeout(r, BOT_PAUSE_MS)),
-      ]);
+      let uci: string;
+      try {
+        const [bot, book] = await Promise.all([engines().bot, engines().book]);
+        const legal = c.moves({ verbose: true }).map(toUci);
+        const fromBook = c.history().length < BOOK_PLIES ? bookMove(book, c.fen()) : null;
+        const allFens = [START_FEN, ...c.history({ verbose: true }).map((m) => m.after)];
+        [uci] = await Promise.all([
+          fromBook && legal.includes(fromBook) ? fromBook : bot.pick(allFens, legal),
+          new Promise((r) => setTimeout(r, BOT_PAUSE_MS)),
+        ]);
+      } catch {
+        if (botTurn.current === turn) {
+          setThinking(false);
+          setEngineFailed("bot");
+        }
+        return;
+      }
       if (botTurn.current !== turn) return;
       setThinking(false);
       play(uci, playerColour);
@@ -151,7 +162,10 @@ export default function ChessGame({ onClose }: { onClose: () => void }) {
   // effect can run again on reopen; the first run is the only one that starts.
   useEffect(() => {
     const { bot, book } = engines();
-    Promise.all([bot, book]).then(([b]) => setBotName(b.name));
+    // A bot that fails to load is reported when it's asked to move.
+    Promise.all([bot, book])
+      .then(([b]) => setBotName(b.name))
+      .catch(() => {});
     if (started.current) return;
     started.current = true;
     analyse(0, START_FEN);
@@ -193,6 +207,8 @@ export default function ChessGame({ onClose }: { onClose: () => void }) {
   const yourTurn = !result && !thinking && boardChess.turn() === player && !reviewing;
   const status = result
     ? result.reason
+    : engineFailed === "bot"
+      ? "My bot couldn't start in this browser"
     : !botName && boardChess.turn() !== player
       ? "Setting up the board…"
       : thinking
@@ -206,6 +222,7 @@ export default function ChessGame({ onClose }: { onClose: () => void }) {
 
   const yours = blunders.filter((b) => b.color === player).length;
   const mine = blunders.length - yours;
+  const moveCount = Math.ceil(moves.length / 2);
 
   return (
     <div className="grid gap-8 md:grid-cols-[minmax(0,480px)_1fr]">
@@ -290,7 +307,7 @@ export default function ChessGame({ onClose }: { onClose: () => void }) {
               {HEADLINE[result.winner]}
             </p>
             <p className="text-[13.5px] text-ink-mute">
-              {result.reason} after {Math.ceil(moves.length / 2)} moves.
+              {result.reason} after {moveCount} {moveCount === 1 ? "move" : "moves"}.
             </p>
             <div className="mt-auto flex gap-2">
               <button
@@ -316,7 +333,9 @@ export default function ChessGame({ onClose }: { onClose: () => void }) {
 
         {view === "review" && (
           <div className="flex flex-1 flex-col gap-3">
-            {!analysisDone ? (
+            {engineFailed ? (
+              <p className="text-[13.5px] text-ink-mute">The review engine couldn&apos;t run in this browser.</p>
+            ) : !analysisDone ? (
               <p className="text-[13.5px] text-ink-mute" aria-live="polite">
                 Analysing… {analysed} of {fens.length} positions
               </p>

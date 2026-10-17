@@ -57,8 +57,19 @@ cancel the withdrawal.
 Page copy lives in [src/lib/content.ts](src/lib/content.ts) — hero, About, experience
 entries, and the six projects. Contact links and the resume path are in the same file
 under `references`. The project figures in `public/projects/` are real screenshots and
-diagrams; two projects are still in progress and deliberately carry no figure rather
-than an invented one.
+diagrams; the chess card shows a playable game instead of a figure, and the FYP card
+has its architecture diagram.
+
+## Chess bot
+
+The chess card opens a game against a bot that plays my opening repertoire and then
+Maia-1500 in the browser via onnxruntime-web. After the game, Stockfish 19 reviews
+both sides for blunders. The engines live in `public/engines/` and nothing loads until
+Play is pressed; the opening book is built from my rated rapid games by
+`scripts/build-opening-book.mjs`.
+
+The code is GPL-3.0-or-later, because chessground, Stockfish and Maia are GPL. The
+site's written content, images and opening book are not; see [NOTICE.md](NOTICE.md).
 
 ## Theming
 

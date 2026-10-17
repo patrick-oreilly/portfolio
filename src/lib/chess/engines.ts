@@ -11,6 +11,8 @@ import * as ort from "onnxruntime-web/wasm";
 import { encodePlanes, legalMoveProbabilities, PLANES, sampleMove } from "./maia";
 import { toWhiteCp, type Evaluation } from "./review";
 
+// Must match the exact onnxruntime-web version in package.json: the JS is
+// bundled, the WebAssembly comes from the CDN, and they have to agree.
 const ORT_VERSION = "1.30.0";
 export const MAIA_LEVEL = 1500;
 const ANALYSIS_DEPTH = 14;
@@ -49,13 +51,17 @@ export type Stockfish = {
 export function loadStockfish({ limitElo }: { limitElo?: number } = {}): Promise<Stockfish> {
   const worker = new Worker("/engines/stockfish-19-lite-single.js");
   let onLine: (line: string) => void = () => {};
+  // A crashed worker never answers, so whatever is waiting on it fails instead.
+  let onFail: (error: Error) => void = () => {};
   worker.onmessage = (e: MessageEvent<string>) => onLine(String(e.data));
+  worker.onerror = () => onFail(new Error("Stockfish worker failed"));
 
   let queue: Promise<unknown> = Promise.resolve();
 
   const analyse = (fen: string, depth = ANALYSIS_DEPTH) => {
     const run = () =>
-      new Promise<Evaluation>((resolve) => {
+      new Promise<Evaluation>((resolve, reject) => {
+        onFail = reject;
         const sideToMove = fen.split(" ")[1] as "w" | "b";
         let score: { cp?: number; mate?: number } = {};
         onLine = (line) => {
@@ -75,7 +81,8 @@ export function loadStockfish({ limitElo }: { limitElo?: number } = {}): Promise
     return result;
   };
 
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
+    onFail = reject;
     onLine = (line) => {
       if (line === "readyok") resolve({ analyse, dispose: () => worker.terminate() });
     };

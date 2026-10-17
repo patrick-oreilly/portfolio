@@ -2,12 +2,14 @@
 // chess-blunder-risk project. A move is a blunder when it drops the mover's
 // engine evaluation by BLUNDER_CP centipawns or more.
 //
-// Evaluations are capped at +/-EVAL_CAP and a forced mate counts as the cap,
-// so "mate in 3" is a large finite number rather than infinity, and a move
-// from +15 to mate-in-3 isn't scored as losing ground.
+// Evaluations are capped just below +/-EVAL_CAP, and a forced mate counts as
+// the cap, so "mate in 3" is a large finite number rather than infinity, a move
+// from +15 to mate-in-3 isn't scored as losing ground, and a merely huge
+// centipawn score is never mistaken for a mate in the review.
 
 export const BLUNDER_CP = 200;
 export const EVAL_CAP = 1000;
+const CP_CAP = EVAL_CAP - 1;
 
 /** Stockfish's view of a position, always from White's side, in centipawns. */
 export type Evaluation = { cp: number; best: string | null };
@@ -26,7 +28,7 @@ export type Blunder = PlayedMove & {
 export function toWhiteCp(score: { cp?: number; mate?: number }, sideToMove: "w" | "b"): number {
   let cp: number;
   if (score.mate !== undefined) cp = score.mate > 0 ? EVAL_CAP : -EVAL_CAP;
-  else cp = Math.max(-EVAL_CAP, Math.min(EVAL_CAP, score.cp ?? 0));
+  else cp = Math.max(-CP_CAP, Math.min(CP_CAP, score.cp ?? 0));
   return sideToMove === "w" ? cp : -cp;
 }
 
