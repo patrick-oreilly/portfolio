@@ -7,7 +7,7 @@ export const meta = {
 };
 
 export const about = {
-  body: "Outside of internships and coursework, I build things that start from a question I actually want answered rather than a feature that'd look good on a list. Can a model predict when I'm about to blunder at chess, since I play competitive chess for the Connacht team on Chess.com. Can a handful of specialist agents actually diagnose a bug better than one generalist trying to hold the whole system in its head. Can an AI game master keep a coherent story running for ten people at once without the whole thing falling apart. I've also run the Great Limerick Run half marathon.",
+  body: "Outside of coursework and internships, I mostly build things around questions I actually want answered rather than features that look good on a CV. Things like whether a model can predict when I'm about to blunder at chess or whether a handful of specialist agents can diagnose a system bug better than one generalist trying to hold the whole architecture in its head.",
 };
 
 export type TrajectoryEntry = {
@@ -31,9 +31,9 @@ export const trajectory: TrajectoryEntry[] = [
     summary: "Asked to stay on part-time after the internship, now building autonomous agent workflows and an MCP retrieval service on the innovation team.",
     bullets: [
       "Prototypes AI proofs of concept and presents them directly to executive leadership, including CTOs, before production handoff.",
-      "Key contributor to the innovation team's fastest-ever proof of concept to reach the product roadmap.",
-      "Co-built an AI tool that turns a manual spreadsheet process into customer upgrade insights in seconds, now being productised.",
-      "Designed autonomous multi-agent systems and tool-augmented LLM workflows, including an agent that pulls VM networking details through an MCP server for GreenLake Intelligence.",
+      "Built a proof of concept that moved from prototype to product roadmap in 2 months.",
+      "Built an AI tool that replaces a manual spreadsheet process with automated analysis.",
+      "Designed autonomous multi-agent systems and tool-augmented LLM workflows for internal infrastructure tooling.",
       "Built an MCP data retrieval service on PostgreSQL with vector schemas, serving low-latency context downstream.",
       "Containerised microservices with Docker on Kubernetes, securing service-to-service traffic with token-based OAuth.",
       "Owns staging-to-production releases: regression suites, compliance checks, zero live regressions.",
@@ -95,7 +95,7 @@ export const projects: Project[] = [
       "A study platform that turns PDFs and lecture notes into structured notes, auto-generated quizzes, and a conversational study assistant, built across a 5-service microservices backend.",
     body: [
       "Built 2 of 5 services plus the corresponding frontend: a notes service (serverless, Spring Boot on AWS Lambda, handling rich-text note CRUD and PDF ingestion via S3 presigned URLs and Apache PDFBox), and a generation service, a Google ADK agent that takes a PDF snapshot plus a natural-language request and returns structured notes, quizzes, or a tutoring conversation depending on intent.",
-      "The interesting problem wasn't the AI call itself: it was making the generation agent intent-aware and wiring a serverless PDF pipeline that stays fast under presigned-URL upload and download without a server in the loop.",
+      "The hard part was making the generation agent intent-aware and wiring a serverless PDF pipeline that stays fast under presigned-URL upload and download without a server in the loop.",
     ],
     images: [
       { src: "/projects/ascend-generation-diagram.png", alt: "Ascend generation service system design diagram" },
@@ -150,7 +150,7 @@ export const projects: Project[] = [
     kicker: "CT4101 Machine Learning coursework",
     stack: "Python · scikit-learn · Stockfish",
     summary:
-      "Can a model predict whether a player is about to blunder on their next move? A binary classifier trained on ~4,300 of my own Chess.com games (~250k board positions), labelled with Stockfish 16. I play competitive chess for the Connacht team, and this one started as a question about my own games before it became coursework.",
+      "Can a model predict whether a player is about to blunder on their next move? A binary classifier trained on ~4,300 of my own Chess.com games (~250k board positions), labelled with Stockfish 16. I play chess with a casual club team on Chess.com, and this one started as a question about my own games before it became coursework.",
     link: "https://github.com/patrick-oreilly/chess-blunder-risk",
     featured: false,
   },

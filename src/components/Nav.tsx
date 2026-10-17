@@ -42,7 +42,7 @@ export default function Nav() {
             download
             className="inline-flex min-h-11 items-center rounded-full border border-rule-strong px-4 text-sm font-medium text-ink transition-colors hover:border-ink"
           >
-            Resume
+            CV
           </a>
           <button
             type="button"

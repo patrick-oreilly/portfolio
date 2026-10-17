@@ -8,9 +8,9 @@ export default function Trajectory() {
         <Reveal>
           <div className="mb-10 flex items-center gap-2 text-[13px] font-medium text-ink-mute">
             <span className="h-1.5 w-1.5 rounded-full bg-green" />
-            Trajectory
+            Experience
           </div>
-          <h2 className="text-2xl font-bold tracking-[-0.01em] sm:text-3xl">Where the systems shipped</h2>
+          <h2 className="text-2xl font-bold tracking-[-0.01em] sm:text-3xl">Internships and coursework</h2>
         </Reveal>
 
         <div className="relative mt-12 flex flex-col gap-10">
