@@ -1,0 +1,94 @@
+import type { ReactNode } from "react";
+import Image from "next/image";
+import type { projects } from "@/lib/content";
+import FypArchitectureDiagram from "./FypArchitectureDiagram";
+
+export type Project = (typeof projects)[number];
+
+/**
+ * A card's figure and text. `actions` adds buttons before the links;
+ * `hideEmptyFigure` drops the "No figure yet" strip for cards that bring
+ * something else to show.
+ */
+export default function ProjectCardBody({
+  p,
+  actions,
+  hideEmptyFigure = false,
+}: {
+  p: Project;
+  actions?: ReactNode;
+  hideEmptyFigure?: boolean;
+}) {
+  return (
+    <>
+      {p.images?.length ? (
+        <div className={`grid gap-px bg-rule ${p.images.length > 1 ? "grid-cols-2" : "grid-cols-1"}`}>
+          {p.images.map((img) => (
+            <div key={img.src} className="relative aspect-[16/10] bg-white">
+              <Image
+                src={img.src}
+                alt={img.alt}
+                fill
+                className="object-contain p-2"
+                sizes="(min-width: 768px) 560px, 100vw"
+              />
+            </div>
+          ))}
+        </div>
+      ) : p.slug === "fyp-multi-agent-diagnosis" ? (
+        <FypArchitectureDiagram />
+      ) : hideEmptyFigure ? null : (
+        <div className="flex h-14 items-center justify-center border-b border-rule bg-rule/20">
+          <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-ink-mute">
+            No figure yet · in progress
+          </span>
+        </div>
+      )}
+      <div className="flex flex-1 flex-col gap-3 p-6">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <span className="font-mono text-[11px] uppercase tracking-[0.06em] text-ink-mute">{p.kicker}</span>
+          <span
+            className={`rounded-full px-2.5 py-0.5 text-[11px] font-medium ${
+              p.status === "complete" ? "bg-green-soft text-green-text" : "bg-blue-soft text-blue-text"
+            }`}
+          >
+            {p.statusLabel}
+          </span>
+        </div>
+        <h3 className="text-lg font-bold leading-snug">{p.title}</h3>
+        <p className="text-[14px] leading-relaxed text-ink-mute">{p.summary}</p>
+        {p.body?.map((para) => (
+          <p key={para.slice(0, 24)} className="text-[13.5px] leading-relaxed text-ink-soft">
+            {para}
+          </p>
+        ))}
+        <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-3">
+          <div className="font-mono text-[11px] text-ink-mute">{p.stack}</div>
+          <div className="flex flex-wrap items-center gap-2">
+            {actions}
+            {p.secondaryLink && (
+              <a
+                href={p.secondaryLink.href}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full border border-rule-strong px-4 py-1.5 text-[12.5px] font-semibold text-ink transition-colors hover:border-ink"
+              >
+                {p.secondaryLink.label}
+              </a>
+            )}
+            {p.link && (
+              <a
+                href={p.link}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full bg-ink px-4 py-1.5 text-[12.5px] font-semibold text-paper transition-transform hover:-translate-y-0.5"
+              >
+                Code →
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

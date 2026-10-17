@@ -130,3 +130,149 @@ button:focus-visible {
     transition: none;
   }
 }
+
+/* Chess board (chessground), in the site's colours. A CSS checkerboard
+   replaces chessground's bundled board image; a8, top left, comes out light. */
+:root {
+  --sq-light: light-dark(#eceae3, #3a3f47);
+  --sq-dark: light-dark(#a9b4c6, #232830);
+}
+
+.chess-board cg-board {
+  background-color: var(--sq-light);
+  background-image: repeating-conic-gradient(var(--sq-dark) 0 25%, var(--sq-light) 0 50%);
+  background-size: 25% 25%;
+}
+
+.chess-board cg-board square.last-move {
+  background-color: light-dark(rgba(36, 87, 232, 0.22), rgba(58, 104, 240, 0.35));
+}
+
+.chess-board cg-board square.move-dest {
+  background: radial-gradient(rgba(11, 122, 80, 0.55) 19%, transparent 20%);
+}
+
+.chess-board cg-board square.oc.move-dest {
+  background: radial-gradient(transparent 0%, transparent 79%, rgba(11, 122, 80, 0.45) 80%);
+}
+
+.chess-board cg-board square.check {
+  background: radial-gradient(ellipse at center, rgba(220, 38, 38, 0.9) 0%, rgba(220, 38, 38, 0.25) 60%, transparent 80%);
+}
+
+/* Coordinates inside the squares, file letters bottom right and rank numbers
+   top left, instead of chessground's default offsets that spill off the edge. */
+.chess-board .cg-wrap coords {
+  color: var(--ink-mute);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  opacity: 1;
+}
+
+.chess-board .cg-wrap coords.files {
+  left: 0;
+  bottom: 0;
+}
+
+.chess-board .cg-wrap coords.files coord {
+  text-align: right;
+  padding-right: 3px;
+}
+
+.chess-board .cg-wrap coords.ranks {
+  left: 3px;
+  top: 2px;
+}
+
+.chess-board .cg-wrap coords.ranks coord {
+  transform: none;
+}
+
+/* The chess card opening and closing (src/components/chess/ChessCard.tsx).
+   One view transition: the card's box morphs between sizes while its old and
+   new snapshots stay pinned top-left at natural size, so nothing stretches,
+   and the solid, rounded pair is the card's surface while it moves. */
+::view-transition-group(.card-morph),
+::view-transition-group(.card-text),
+::view-transition-group(.card-slide) {
+  animation-duration: 560ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+::view-transition-image-pair(.card-morph) {
+  overflow: clip;
+  border-radius: 12px;
+  background: var(--paper-raised);
+  box-shadow: inset 0 0 0 1px var(--rule);
+}
+
+::view-transition-image-pair(.card-text) {
+  overflow: clip;
+}
+
+::view-transition-old(.card-morph),
+::view-transition-new(.card-morph),
+::view-transition-old(.card-text),
+::view-transition-new(.card-text) {
+  width: auto;
+  height: auto;
+  object-fit: none;
+  object-position: top left;
+  inset: 0 auto auto 0;
+}
+
+/* A hand-off, not a crossfade: old contents leave before new ones arrive, so
+   two layouts of the same text never overlap. */
+::view-transition-old(.card-morph) {
+  animation: 110ms ease-in both card-fade-out;
+}
+
+::view-transition-new(.card-morph) {
+  animation: 300ms ease-out 200ms both card-fade-in;
+}
+
+/* On phones the card's text doesn't move, so a quick crossfade leaves it
+   visibly in place. On wider screens it rewraps, so it hands off too. */
+::view-transition-old(.card-text) {
+  animation: 180ms ease-in both card-fade-out;
+}
+
+::view-transition-new(.card-text) {
+  animation: 260ms ease-out 60ms both card-fade-in;
+}
+
+@media (min-width: 768px) {
+  ::view-transition-old(.card-text) {
+    animation: 110ms ease-in both card-fade-out;
+  }
+
+  ::view-transition-new(.card-text) {
+    animation: 300ms ease-out 200ms both card-fade-in;
+  }
+}
+
+/* The rest of the page switches instantly under the moving cards; a root
+   crossfade would ghost every section below. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+@keyframes card-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes card-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}

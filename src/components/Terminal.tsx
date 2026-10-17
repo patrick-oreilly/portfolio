@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
 import { projects, references, toolkit, trajectory } from "@/lib/content";
+import { PLAY_EVENT } from "@/lib/chess/events";
 import { setTheme } from "@/lib/theme";
 import Reveal from "./Reveal";
 
@@ -18,6 +19,7 @@ const HELP_LINES = [
   "  toolkit              languages, stack, practices",
   "  contact              how to reach me",
   "  cv                   download my cv",
+  "  play                 play my chess bot",
   "  theme <light|dark>   switch theme",
   "  clear                clear the screen",
 ];
@@ -70,6 +72,9 @@ function runCommand(raw: string, downloadCv: () => void): string[] | null {
     case "cv":
       downloadCv();
       return ["downloading cv..."];
+    case "play":
+      window.dispatchEvent(new Event(PLAY_EVENT));
+      return ["opening the board... think you can beat me?"];
     case "theme": {
       const choice = args[0];
       if (choice === "light" || choice === "dark") {
