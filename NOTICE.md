@@ -19,6 +19,7 @@ offered under the same terms.
 | Maia chess (1500 network, ONNX export) | GPL-3.0 (weights and code) | https://github.com/CSSLab/maia-chess, https://huggingface.co/spaces/lczerolens/backends-demo |
 | chess.js | BSD-2-Clause | https://github.com/jhlywa/chess.js |
 | onnxruntime-web | MIT | https://github.com/microsoft/onnxruntime |
+| Geist Bold, Geist Mono Medium (share-image fonts in `scripts/share-image/`; the bold has its kerning table removed) | OFL-1.1 | https://github.com/vercel/geist-font |
 
 Engine files and their notices are in [`public/engines/`](public/engines/README.txt).
 

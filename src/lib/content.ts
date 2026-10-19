@@ -2,12 +2,12 @@ export const meta = {
   kicker: "Final-Year CS Student · AI Intern at HPE",
   headline: "I build practical agentic workflows and production AI systems.",
   sub: "First Class Honours CS student at University of Galway, currently interning at HPE on the innovation team, building multi-agent workflows.",
-  availability: "Working part-time at HPE now · graduate roles from Sept 2027",
+  availability: "Working part-time at HPE",
   location: "Galway, IE",
 };
 
 export const about = {
-  body: "Outside of coursework and internships, I mostly build things around questions I actually want answered rather than features that look good on a CV. Things like whether a model can predict when I'm about to blunder at chess or whether a handful of specialist agents can diagnose a system bug better than one generalist trying to hold the whole architecture in its head.",
+  body: "Outside of college and work I build things I'm curious about. Can a model tell when I'm about to blunder at chess? Would a few specialist agents beat one generalist at finding a bug? I don't know yet, so I'm building them to find out.",
 };
 
 export type TrajectoryEntry = {
@@ -28,15 +28,15 @@ export const trajectory: TrajectoryEntry[] = [
     role: "Innovation Engineering AI Intern",
     dates: "Jan 2026 — present",
     current: true,
-    summary: "Asked to stay on part-time after the internship, now building autonomous agent workflows and an MCP retrieval service on the innovation team.",
+    summary: "They asked me to stay on part-time after the first internship. Now I'm on the innovation team building agent workflows and a retrieval service.",
     bullets: [
-      "Prototypes AI proofs of concept and presents them directly to executive leadership, including CTOs, before production handoff.",
-      "Built a proof of concept that moved from prototype to product roadmap in 2 months.",
-      "Built an AI tool that replaces a manual spreadsheet process with automated analysis.",
-      "Designed autonomous multi-agent systems and tool-augmented LLM workflows for internal infrastructure tooling.",
-      "Built an MCP data retrieval service on PostgreSQL with vector schemas, serving low-latency context downstream.",
-      "Containerised microservices with Docker on Kubernetes, securing service-to-service traffic with token-based OAuth.",
-      "Owns staging-to-production releases: regression suites, compliance checks, zero live regressions.",
+      "I build AI prototypes and demo them to senior leadership, including CTOs, before they go to production.",
+      "One of my prototypes made it onto the product roadmap within 2 months.",
+      "I built an AI tool that replaces a manual spreadsheet process with automated analysis.",
+      "I built multi-agent workflows for internal infrastructure tools.",
+      "I built an MCP retrieval service on PostgreSQL with vector schemas that serves context to downstream tools with low latency.",
+      "I containerised microservices with Docker on Kubernetes and secured service-to-service traffic with token-based OAuth.",
+      "I run releases from staging to production: regression tests, compliance checks, and nothing has broken live.",
     ],
     stack: "Python · LangGraph · Google ADK · MCP · PostgreSQL · Docker · Kubernetes · OAuth · Langfuse",
   },
@@ -48,8 +48,8 @@ export const trajectory: TrajectoryEntry[] = [
     current: false,
     summary: "LangGraph agent for Kubernetes workload failure remediation.",
     bullets: [
-      "Co-developed a LangGraph agent for Kubernetes workload failure remediation, extracting actionable insights from cluster logs.",
-      "Extended the workflow with RAG and persistent memory for context-aware, multi-turn troubleshooting conversations.",
+      "I co-developed a LangGraph agent that diagnoses Kubernetes workload failures by pulling useful insights out of cluster logs.",
+      "I extended it with RAG and persistent memory so it can hold a multi-turn troubleshooting conversation with context.",
     ],
     stack: "Python · LangGraph · Kubernetes · RAG",
   },

@@ -58,7 +58,7 @@ const card = box(
       { fontFamily: "Geist", fontWeight: 700, fontSize: 64, lineHeight: 1, letterSpacing: "-0.03em", color: "#f0f0ee" },
       "Patrick O’Reilly"
     ),
-    mono("#4ec08d", dot("#4ec08d"), "Part-time at HPE now · grad roles Sept 2027"),
+    mono("#4ec08d", dot("#4ec08d"), "Working part-time at HPE"),
     box({ height: 1, backgroundColor: "#383d45", marginTop: 6 }),
     mono("#8d939c", "patrickoreilly.dev")
   )
