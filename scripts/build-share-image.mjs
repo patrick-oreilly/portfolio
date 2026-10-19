@@ -31,7 +31,7 @@ const photo = await sharp(read("public/about/speaking.jpg"))
 const box = (style, ...children) => h("div", { style: { display: "flex", ...style } }, ...children);
 const dot = (color) => box({ width: 10, height: 10, borderRadius: 99, backgroundColor: color });
 const mono = (color, ...children) =>
-  box({ alignItems: "center", gap: 12, fontFamily: "Geist Mono", fontSize: 19, color }, ...children);
+  box({ alignItems: "center", gap: 12, fontFamily: "Geist Mono", fontSize: 18, color }, ...children);
 
 const card = box(
   {
@@ -53,12 +53,12 @@ const card = box(
   }),
   box(
     { position: "absolute", top: 0, left: 636, width: 508, height: H, flexDirection: "column", justifyContent: "center", gap: 28 },
-    mono("#b9bec6", dot("#3a68f0"), "Final-Year CS Student · AI Intern at HPE"),
+    mono("#b9bec6", dot("#3a68f0"), "Final-Year CS Student · University of Galway"),
     box(
       { fontFamily: "Geist", fontWeight: 700, fontSize: 64, lineHeight: 1, letterSpacing: "-0.03em", color: "#f0f0ee" },
       "Patrick O’Reilly"
     ),
-    mono("#4ec08d", dot("#4ec08d"), "Open to grad roles · Sept 2027"),
+    mono("#4ec08d", dot("#4ec08d"), "Part-time at HPE now · grad roles Sept 2027"),
     box({ height: 1, backgroundColor: "#383d45", marginTop: 6 }),
     mono("#8d939c", "patrickoreilly.dev")
   )
