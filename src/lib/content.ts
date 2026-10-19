@@ -88,6 +88,27 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "taxi-chat",
+    title: "Taxi Chat",
+    status: "complete",
+    statusLabel: "Complete",
+    kicker: "Independent · open source",
+    stack: "Python · DuckDB · Jev (TypeSafe) · DeepSeek · FastAPI · React · deck.gl",
+    summary:
+      "A chatbot over every NYC taxi and rideshare trip from 2019 to 2025, all 1.79 billion of them, built to decline rather than guess. On 46 held-out questions I wrote without trying them on the bot first, it answered 30 of 33 correctly and declined all 12 it should have, with no answers it should have refused.",
+    body: [
+      "A classification model picks the question type, place and dates with a confidence for each, and anything below a tuned threshold is declined with the reason. Code turns those choices into SQL, and the language model only phrases the result. A checker rejects any number in the reply that isn't in the query result.",
+      "All three wrong answers came from one bug: New Year's Eve 2021 was a Friday, and the small hours of that night were counted in 2022. The held-out run is what found it.",
+    ],
+    link: "https://github.com/patrick-oreilly/taxi-chat",
+    video: {
+      src: "/projects/taxi-chat-demo.mp4",
+      poster: "/projects/taxi-chat-demo-poster.jpg",
+      label: "Screen recording: Taxi Chat ranks the busiest pickup zones of 2024, compares Brooklyn and Queens, charts monthly yellow cab trips in 2020, and declines a question about drivers.",
+    },
+    featured: true,
+  },
+  {
     slug: "ascend",
     title: "Ascend — AI-Powered Study Platform",
     status: "complete",
