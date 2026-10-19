@@ -82,6 +82,7 @@ export type Project = {
   link?: string;
   secondaryLink?: { label: string; href: string };
   images?: { src: string; alt: string }[];
+  video?: { src: string; poster: string; label: string };
   featured: boolean;
 };
 
@@ -103,6 +104,27 @@ export const projects: Project[] = [
       { src: "/projects/ascend-generation-diagram.png", alt: "Ascend generation service system design diagram" },
       { src: "/projects/ascend-frontend-screenshot.png", alt: "Ascend frontend product UI" },
     ],
+    featured: true,
+  },
+  {
+    slug: "chesscom-stats-mcp",
+    title: "chesscom-stats-mcp",
+    status: "complete",
+    statusLabel: "Published on npm",
+    kicker: "Independent · open source",
+    stack: "TypeScript · MCP SDK · Node.js · Chess.com API",
+    summary:
+      "An MCP server that lets Claude, Cursor or any MCP client answer \"how did I do on Chess.com this month?\" It pulls a month of games and works out my record, rating change per time control, how my wins and losses ended, streaks, best win and worst loss, and how each opening is scoring. It installs with one line through npx and needs no API key.",
+    body: [
+      "It's the public, small-scale version of the MCP work I do at HPE: read-only tools with tight schemas, with the summarising done on the server so the model gets a few hundred tokens of stats instead of a month of raw PGNs.",
+    ],
+    link: "https://github.com/patrick-oreilly/chesscom-stats-mcp",
+    secondaryLink: { label: "npm →", href: "https://www.npmjs.com/package/chesscom-stats-mcp" },
+    video: {
+      src: "/projects/chesscom-mcp-demo.mp4",
+      poster: "/projects/chesscom-mcp-demo-poster.jpg",
+      label: "Screen recording: I ask Claude Code how I did on Chess.com this month, it calls the MCP server, and it answers with my record, rating changes and openings.",
+    },
     featured: true,
   },
   {

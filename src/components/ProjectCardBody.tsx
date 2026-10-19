@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import type { projects } from "@/lib/content";
+import DemoVideo from "./DemoVideo";
 import FypArchitectureDiagram from "./FypArchitectureDiagram";
 
 export type Project = (typeof projects)[number];
@@ -21,7 +22,9 @@ export default function ProjectCardBody({
 }) {
   return (
     <>
-      {p.images?.length ? (
+      {p.video ? (
+        <DemoVideo {...p.video} />
+      ) : p.images?.length ? (
         <div className={`grid gap-px bg-rule ${p.images.length > 1 ? "grid-cols-2" : "grid-cols-1"}`}>
           {p.images.map((img) => (
             <div key={img.src} className="relative aspect-[16/10] bg-white">
