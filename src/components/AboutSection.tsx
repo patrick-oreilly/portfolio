@@ -30,14 +30,14 @@ export default function AboutSection() {
                   Public speaking
                 </div>
                 <p className="text-[15px] leading-relaxed text-ink-soft">
-                  I recently gave a tech talk to 100+ students at ATU on what I&rsquo;ve learned at HPE.
+                  I gave a talk at ATU on what HPE taught me, including that engineering is about much more than the code.
                 </p>
               </div>
               <div className="w-full shrink-0 sm:w-[420px]">
                 <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl border border-rule-strong">
                   <Image
                     src="/about/speaking.jpg"
-                    alt="Patrick O'Reilly giving a tech talk to 100+ students at ATU"
+                    alt="Patrick O'Reilly giving a talk at ATU"
                     fill
                     className="object-cover"
                     sizes="(min-width: 640px) 420px, 100vw"
