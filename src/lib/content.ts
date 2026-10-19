@@ -116,7 +116,7 @@ export const projects: Project[] = [
     summary:
       "An MCP server that lets Claude, Cursor or any MCP client answer \"how did I do on Chess.com this month?\" It pulls a month of games and works out my record, rating change per time control, how my wins and losses ended, streaks, best win and worst loss, and how each opening is scoring. It installs with one line through npx and needs no API key.",
     body: [
-      "It's the public, small-scale version of the MCP work I do at HPE: read-only tools with tight schemas, with the summarising done on the server so the model gets a few hundred tokens of stats instead of a month of raw PGNs.",
+      "A month of raw PGNs is thousands of tokens and LLMs are bad at counting over them, so the server aggregates the archives upfront and returns a few hundred tokens of typed stats instead.",
     ],
     link: "https://github.com/patrick-oreilly/chesscom-stats-mcp",
     secondaryLink: { label: "npm →", href: "https://www.npmjs.com/package/chesscom-stats-mcp" },
