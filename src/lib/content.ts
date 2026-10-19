@@ -1,7 +1,7 @@
 export const meta = {
   kicker: "Final-Year CS Student · AI Intern at HPE",
   headline: "I build practical agentic workflows and production AI systems.",
-  sub: "First Class Honours CS student at University of Galway, currently interning at HPE on the innovation team, building multi-agent workflows, one of which is already headed for production.",
+  sub: "First Class Honours CS student at University of Galway, currently interning at HPE on the innovation team, building multi-agent workflows.",
   availability: "Available for graduate software engineering roles from September 2027",
   location: "Galway, IE",
 };
