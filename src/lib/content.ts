@@ -104,7 +104,7 @@ export const projects: Project[] = [
     video: {
       src: "/projects/taxi-chat-demo.mp4",
       poster: "/projects/taxi-chat-demo-poster.jpg",
-      label: "Screen recording: Taxi Chat ranks the busiest pickup zones of 2024, compares Brooklyn and Queens, charts monthly yellow cab trips in 2020, and declines a question about drivers.",
+      label: "Screen recording: Taxi Chat ranks the busiest pickup zones of January 2024, compares Brooklyn and Queens, charts monthly yellow cab trips in 2020, answers a question about Billyburg on Friday nights, and declines a question about drivers.",
     },
     featured: true,
   },
