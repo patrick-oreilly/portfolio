@@ -6,6 +6,31 @@ import FypArchitectureDiagram from "./FypArchitectureDiagram";
 
 export type Project = (typeof projects)[number];
 
+const INLINE_LINK = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g;
+
+/** Body paragraphs are plain text, except `[text](https://…)` becomes a link. */
+function withLinks(text: string): ReactNode[] {
+  const parts: ReactNode[] = [];
+  let last = 0;
+  for (const match of text.matchAll(INLINE_LINK)) {
+    parts.push(text.slice(last, match.index));
+    parts.push(
+      <a
+        key={match.index}
+        href={match[2]}
+        target="_blank"
+        rel="noreferrer"
+        className="font-medium text-ink underline decoration-rule-strong transition-colors hover:decoration-ink"
+      >
+        {match[1]}
+      </a>
+    );
+    last = match.index + match[0].length;
+  }
+  parts.push(text.slice(last));
+  return parts;
+}
+
 /**
  * A card's figure and text. `actions` adds buttons before the links;
  * `hideEmptyFigure` drops the "No figure yet" strip for cards that bring
@@ -62,7 +87,7 @@ export default function ProjectCardBody({
         <p className="text-[14px] leading-relaxed text-ink-mute">{p.summary}</p>
         {p.body?.map((para) => (
           <p key={para.slice(0, 24)} className="text-[13.5px] leading-relaxed text-ink-soft">
-            {para}
+            {withLinks(para)}
           </p>
         ))}
         <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-3">
