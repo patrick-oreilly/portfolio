@@ -28,7 +28,7 @@ export const trajectory: TrajectoryEntry[] = [
     role: "Innovation Engineering AI Intern",
     dates: "Jan 2026 — present",
     current: true,
-    summary: "They asked me to stay on part-time after the first internship. Now I'm on the innovation team building agent workflows and a retrieval service.",
+    summary: "On the innovation team, building agent workflows and a retrieval service.",
     bullets: [
       "I build AI prototypes and demo them to senior leadership, including CTOs, before they go to production.",
       "One of my prototypes made it onto the product roadmap within 2 months.",
@@ -37,6 +37,7 @@ export const trajectory: TrajectoryEntry[] = [
       "I built an MCP retrieval service on PostgreSQL with vector schemas that serves context to downstream tools with low latency.",
       "I containerised microservices with Docker on Kubernetes and secured service-to-service traffic with token-based OAuth.",
       "I run releases from staging to production: regression tests, compliance checks, and nothing has broken live.",
+      "I've stayed on part-time alongside my final year of college.",
     ],
     stack: "Python · LangGraph · Google ADK · MCP · PostgreSQL · Docker · Kubernetes · OAuth · Langfuse",
   },
