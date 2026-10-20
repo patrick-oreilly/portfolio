@@ -1,13 +1,13 @@
 export const meta = {
   kicker: "Final-Year CS Student · AI Intern at HPE",
   headline: "I build practical agentic workflows and production AI systems.",
-  sub: "First Class Honours CS student at University of Galway, currently interning at HPE on the innovation team, building multi-agent workflows.",
+  sub: "First Class Honours CS student at University of Galway, currently interning at HPE on the innovation team.",
   availability: "Working part-time at HPE",
   location: "Galway, IE",
 };
 
 export const about = {
-  body: "Outside of college and work I build things I'm curious about. Can a model tell when I'm about to blunder at chess? Would a few specialist agents beat one generalist at finding a bug? I don't know yet, so I'm building them to find out.",
+  body: "Outside of college and work, I build things I'm curious about. Can an LLM answer questions about 1.79 billion NYC taxi trips without making up numbers? I built Taxi Chat to find out: it answered 30 of 33 questions correctly and declined all 12 it shouldn't answer. Now I'm investigating two more questions: can a model tell when I'm about to blunder at chess, and can a team of specialist agents running open-source local models diagnose bugs as well as a single frontier model?",
 };
 
 export type TrajectoryEntry = {
@@ -28,16 +28,12 @@ export const trajectory: TrajectoryEntry[] = [
     role: "Innovation Engineering AI Intern",
     dates: "Jan 2026 — present",
     current: true,
-    summary: "On the innovation team, building agent workflows and a retrieval service.",
+    summary: "Building AI agents and a retrieval service for internal tools.",
     bullets: [
-      "I build AI prototypes and demo them to senior leadership, including CTOs, before they go to production.",
-      "One of my prototypes made it onto the product roadmap within 2 months.",
-      "I built an AI tool that replaces a manual spreadsheet process with automated analysis.",
-      "I built multi-agent workflows for internal infrastructure tools.",
-      "I built an MCP retrieval service on PostgreSQL with vector schemas that serves context to downstream tools with low latency.",
-      "I containerised microservices with Docker on Kubernetes and secured service-to-service traffic with token-based OAuth.",
-      "I run releases from staging to production: regression tests, compliance checks, and nothing has broken live.",
-      "I've stayed on part-time alongside my final year of college.",
+      "Develop and demo AI prototypes to senior leadership, including CTOs, to help decide what gets built next. One made it onto the product roadmap within two months.",
+      "Built an MCP retrieval service on PostgreSQL with vector schemas that serves context to downstream internal tools.",
+      "Replaced a manual spreadsheet workflow with an AI tool that automates the analysis end-to-end.",
+      "Containerised microservices with Docker on Kubernetes, secured service-to-service traffic with token-based OAuth, and run staging-to-production releases with regression tests and compliance checks.",
     ],
     stack: "Python · LangGraph · Google ADK · MCP · PostgreSQL · Docker · Kubernetes · OAuth · Langfuse",
   },
@@ -47,10 +43,10 @@ export const trajectory: TrajectoryEntry[] = [
     role: "Software Engineer Intern",
     dates: "Jun 2025 — Aug 2025",
     current: false,
-    summary: "LangGraph agent for Kubernetes workload failure remediation.",
+    summary: "LangGraph agent for Kubernetes diagnosis, and a RAG chatbot for internal docs.",
     bullets: [
-      "I co-developed a LangGraph agent that diagnoses Kubernetes workload failures by pulling useful insights out of cluster logs.",
-      "I extended it with RAG and persistent memory so it can hold a multi-turn troubleshooting conversation with context.",
+      "Built a LangGraph agent on my own that scans Kubernetes logs and diagnoses why workloads fail.",
+      "Co-developed a chatbot that answers questions from HPE's internal documentation using RAG.",
     ],
     stack: "Python · LangGraph · Kubernetes · RAG",
   },
@@ -58,10 +54,10 @@ export const trajectory: TrajectoryEntry[] = [
     id: "university",
     org: "University of Galway",
     role: "B.Sc. Computer Science & Information Technology",
-    dates: "Sept 2023 — Sept 2027",
+    dates: "Sept 2023 — May 2027",
     current: true,
     summary:
-      "First Class Honours (Years 1–3). Excellence Scholarship (2023–24) and University Scholar (2024–25) for top-tier examination results.",
+      "First Class Honours (Years 1–3). Excellence Scholarship (2023–24) and University Scholar (2024–25) for exam results.",
     bullets: [
       "Relevant coursework: Advanced Programming (93%), Data Comms & Networking (92%), Programming Paradigms (90%).",
       "Leaving Certificate: 625 points, the maximum available.",
@@ -73,6 +69,7 @@ export const trajectory: TrajectoryEntry[] = [
 export type Project = {
   slug: string;
   title: string;
+  question?: string;
   status: "in-progress" | "complete";
   statusLabel: string;
   kicker: string;
@@ -80,7 +77,9 @@ export type Project = {
   summary: string;
   body?: string[];
   link?: string;
+  demo?: { label: string; href: string };
   secondaryLink?: { label: string; href: string };
+  relatedNote?: { label: string; href: string };
   images?: { src: string; alt: string }[];
   video?: { src: string; poster: string; label: string };
   featured: boolean;
@@ -90,14 +89,15 @@ export const projects: Project[] = [
   {
     slug: "taxi-chat",
     title: "Taxi Chat",
+    question: "Can an LLM answer questions about data without making up numbers?",
     status: "complete",
     statusLabel: "Complete",
-    kicker: "Independent · open source",
+    kicker: "Evaluation · Data systems",
     stack: "Python · DuckDB · Jev (TypeSafe) · DeepSeek · FastAPI · React · deck.gl",
     summary:
-      "A chatbot over every NYC taxi and rideshare trip from 2019 to 2025, all 1.79 billion of them, built to decline rather than guess. On 46 held-out questions I wrote without trying them on the bot first, it answered 30 of 33 correctly and declined all 12 it should have, with no answers it should have refused.",
+      "A chatbot over all 1.79 billion NYC taxi and rideshare trips from 2019 to 2025. On 46 questions it had never seen, it got 30 of the 33 it answered right and declined all 12 it couldn't answer.",
     body: [
-      "A classification model, [Jev](https://docs.typesafe.ai), picks the question type, place and dates with a confidence for each, and anything below a tuned threshold is declined with the reason. Code turns those choices into SQL, and the language model only phrases the result. A checker rejects any number in the reply that isn't in the query result.",
+      "A classification model, [Jev](https://docs.typesafe.ai), picks the question type, place and dates with a confidence for each, and anything below a tuned threshold is declined with the reason. Code turns those choices into SQL, and the language model only phrases the result. A checker rejects any number in the reply that isn't in the query result. The median answer takes 1.4 seconds.",
     ],
     link: "https://github.com/patrick-oreilly/taxi-chat",
     video: {
@@ -108,17 +108,38 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    slug: "chess-coach",
+    title: "Chess Coach",
+    question: "Which of my chess mistakes keep happening, and can I train them out?",
+    status: "complete",
+    statusLabel: "Complete",
+    kicker: "Algorithms · Engine analysis",
+    stack: "TypeScript · Next.js · Stockfish 18 · DeepSeek · SQLite · Chessground",
+    summary:
+      "A coach that runs on my laptop. It pulls my Chess.com games, checks every move with Stockfish, and turns each big mistake into a puzzle I have to solve again until I get it right. It also flags blunders I made with under 4 seconds thought, and shows where each of my openings is losing games.",
+    body: [
+      "DeepSeek writes a short explanation of each mistake. Without an API key it falls back to Stockfish's own lines.",
+    ],
+    link: "https://github.com/patrick-oreilly/chess-coach",
+    images: [
+      {
+        src: "/projects/chess-coach-screenshot.png",
+        alt: "Chess Coach game review showing Stockfish 18 evaluation, move diff arrows, and coaching diagnosis",
+      },
+    ],
+    featured: true,
+  },
+  {
     slug: "ascend",
-    title: "Ascend — AI-Powered Study Platform",
+    title: "Ascend",
     status: "complete",
     statusLabel: "Complete · team of 3",
-    kicker: "Team project",
+    kicker: "Agent workflows · Cloud microservices",
     stack: "Java · Spring Boot · AWS (Lambda, DynamoDB, S3) · Google ADK · React · TypeScript",
     summary:
-      "A study platform that turns PDFs and lecture notes into structured notes, auto-generated quizzes, and a conversational study assistant, built across a 5-service microservices backend.",
+      "A study app my team of three built for lecture PDFs. Upload one, press a button to get notes or a quiz, or ask the chatbot about it.",
     body: [
-      "Built 2 of 5 services plus the corresponding frontend: a notes service (serverless, Spring Boot on AWS Lambda, handling rich-text note CRUD and PDF ingestion via S3 presigned URLs and Apache PDFBox), and a generation service, a Google ADK agent that takes a PDF snapshot plus a natural-language request and returns structured notes, quizzes, or a tutoring conversation depending on intent.",
-      "The hard part was making the generation agent intent-aware and wiring a serverless PDF pipeline that stays fast under presigned-URL upload and download without a server in the loop.",
+      "I built two of the five backend services and their frontend. The notes service runs Spring Boot on AWS Lambda: it stores rich-text notes and takes PDF uploads through S3 presigned URLs, reading them with Apache PDFBox. The generation service is a Google ADK agent that writes the notes and quizzes from a PDF and answers questions about it in the chat.",
     ],
     images: [
       { src: "/projects/ascend-generation-diagram.png", alt: "Ascend generation service system design diagram" },
@@ -127,17 +148,43 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    slug: "fyp-multi-agent-diagnosis",
+    title: "Multi-Agent Diagnosis",
+    question: "How close can a free, local AI tool get to Claude Code at finding bugs?",
+    status: "in-progress",
+    statusLabel: "In progress · FYP",
+    kicker: "Local AI · Multi-agent systems",
+    stack: "Python · LangGraph · Ollama · Docker · tree-sitter",
+    summary:
+      "A bug-finding tool that runs entirely on a laptop. Point it at a repo and a team of agents on a small open-weight model looks for bugs and security problems, and your code never leaves the machine. My final year project measures how close that gets to Claude Code.",
+    body: [
+      "I'm comparing four setups on about 20 copies of a Java app and a Python app with bugs I've planted: one local agent on its own, a fixed team of specialist agents, an orchestrator that decides which agents to spawn, and Claude Code. The agents are my own LangGraph nodes, and every repo runs in a locked-down Docker container.",
+    ],
+    featured: true,
+  },
+  {
+    slug: "chess-blunder-risk",
+    title: "Chess Blunder Risk",
+    question: "Can a model tell when I'm about to blunder?",
+    status: "in-progress",
+    statusLabel: "In progress",
+    kicker: "CT4101 Machine Learning coursework",
+    stack: "Python · scikit-learn · Stockfish",
+    summary:
+      "A classifier trained on about 250,000 positions from 4,300 of my own Chess.com games, labelled with Stockfish. I play with a casual club team on Chess.com, and this started as a question about my own games before it became coursework.",
+    link: "https://github.com/patrick-oreilly/chess-blunder-risk",
+    secondaryLink: { label: "Chess.com →", href: "https://www.chess.com/member/patrickoreilly2" },
+    featured: false,
+  },
+  {
     slug: "chesscom-stats-mcp",
-    title: "chesscom-stats-mcp",
+    title: "Chess.com MCP",
     status: "complete",
     statusLabel: "Published on npm",
-    kicker: "Independent · open source",
+    kicker: "MCP server · npm package",
     stack: "TypeScript · MCP SDK · Node.js · Chess.com API",
     summary:
-      "An MCP server that lets Claude, Cursor or any MCP client answer \"how did I do on Chess.com this month?\" It pulls a month of games and works out my record, rating change per time control, how my wins and losses ended, streaks, best win and worst loss, and how each opening is scoring. It installs with one line through npx and needs no API key.",
-    body: [
-      "A month of raw PGNs is thousands of tokens and LLMs are bad at counting over them, so the server aggregates the archives upfront and returns a few hundred tokens of typed stats instead.",
-    ],
+      "An MCP server that lets Claude, Cursor or any MCP client answer \"how did I do on Chess.com this month?\" Rather than handing the model a month of raw games, it works out your record, rating changes, streaks and openings first and passes over a few hundred tokens of stats. Install is one npx line, and no API key is needed.",
     link: "https://github.com/patrick-oreilly/chesscom-stats-mcp",
     secondaryLink: { label: "npm →", href: "https://www.npmjs.com/package/chesscom-stats-mcp" },
     video: {
@@ -145,19 +192,6 @@ export const projects: Project[] = [
       poster: "/projects/chesscom-mcp-demo-poster.jpg",
       label: "Screen recording: I ask Claude Code how I did on Chess.com this month, it calls the MCP server, and it answers with my record, rating changes and openings.",
     },
-    featured: true,
-  },
-  {
-    slug: "route-scouter",
-    title: "Route Scouter",
-    status: "complete",
-    statusLabel: "Complete",
-    kicker: "Independent",
-    stack: "Python · Google Cloud · Google Maps API",
-    summary:
-      "A conversational agent that recommends running routes by distance and location from plain-language requests. Built off the back of training for the Great Limerick Run half marathon.",
-    link: "https://github.com/patrick-oreilly/route-scouter",
-    images: [{ src: "/projects/route-scouter-screenshot.png", alt: "Route Scouter conversational agent screenshot" }],
     featured: false,
   },
   {
@@ -165,10 +199,10 @@ export const projects: Project[] = [
     title: "What Next?",
     status: "complete",
     statusLabel: "Complete",
-    kicker: "Independent, with my brother",
+    kicker: "Multiplayer iOS · Serverless",
     stack: "Swift · iOS · Vercel (Serverless) · Generative AI",
     summary:
-      "An AI game master for 2–10 players: an LLM dynamically narrates a branching turn-based story based on everyone's choices. Built a serverless state API with quorum-based voting and host-side timestamp verification to stop race conditions when everyone submits at once.",
+      "An iOS party game for 2–10 players where an LLM tells the story and everyone votes on what happens next. I built the serverless backend that tracks game state, with quorum voting and host-side timestamps so votes don't collide when everyone submits at once.",
     link: "https://github.com/patrick-oreilly/whatNext",
     images: [{ src: "/projects/whatnext-screenshot.png", alt: "What Next? app screenshot" }],
     featured: false,
@@ -178,41 +212,13 @@ export const projects: Project[] = [
     title: "The Finals Curse",
     status: "complete",
     statusLabel: "Complete",
-    kicker: "Independent",
+    kicker: "Game engineering",
     stack: "Unity 6 (URP) · C#",
     summary:
-      "A 2D puzzle-platformer: a cursed basketball player dunks through five mystical levels to escape before the NBA Finals. Custom ball-throw physics, a gravity-flip ability, and enemy AI built on state machines, all on a modular component-based architecture.",
+      "A 2D puzzle-platformer where a cursed basketball player has to get through five levels and escape before the NBA Finals. I built it on my own, including the ball-throw physics, a gravity-flip ability, and enemy AI using state machines.",
     link: "https://github.com/patrick-oreilly/theFinalsCurse",
     images: [{ src: "/projects/finals-curse-banner.png", alt: "The Finals Curse game banner" }],
     featured: false,
-  },
-  {
-    slug: "chess-blunder-risk",
-    title: "Chess Blunder Risk",
-    status: "in-progress",
-    statusLabel: "In progress",
-    kicker: "CT4101 Machine Learning coursework",
-    stack: "Python · scikit-learn · Stockfish",
-    summary:
-      "Can a model predict whether a player is about to blunder on their next move? A binary classifier trained on ~4,300 of my own Chess.com games (~250k board positions), labelled with Stockfish 16. I play chess with a casual club team on Chess.com, and this one started as a question about my own games before it became coursework.",
-    link: "https://github.com/patrick-oreilly/chess-blunder-risk",
-    secondaryLink: { label: "Chess.com →", href: "https://www.chess.com/member/patrickoreilly2" },
-    featured: false,
-  },
-  {
-    slug: "fyp-multi-agent-diagnosis",
-    title: "Multi-Agent Software Diagnosis System",
-    status: "in-progress",
-    statusLabel: "In progress",
-    kicker: "Final Year Project · 2026/27",
-    stack: "Python · LLM Agents · SWE-agent / mini-SWE-agent · Benchmarking",
-    summary:
-      "Research question: can a team of specialist AI agents diagnose problems in a software system more effectively than a single general-purpose coding agent?",
-    body: [
-      "Most AI coding agents are generalists: one agent, one context window, trying to hold architecture, tests, performance, and documentation in its head at once. This project tests whether splitting that work across specialist agents (architecture, code quality, testing, performance, usability, accessibility, documentation), coordinated by a reviewing agent, actually produces better diagnoses rather than just different ones.",
-      "Approach: build on SWE-agent or mini-SWE-agent's existing agent-computer interface; turn a supervisor-provided PetClinic assignment set (one reference repo, ~70 student submissions with real bugs) into a scored diagnosis benchmark with precision/recall metrics defined up front; run the general-purpose agent across all 70 repos as the baseline to beat; build the specialist agents plus a coordinator; rerun the full benchmark and compare against the baseline.",
-    ],
-    featured: true,
   },
 ];
 
@@ -224,22 +230,20 @@ export type ToolkitGroup = {
 export const toolkit: ToolkitGroup[] = [
   {
     label: "Languages",
-    items: "Python · C# · Java · C · TypeScript · Swift · SQL (PostgreSQL)",
+    items: "Python · TypeScript · Java · C# · C · SQL",
   },
   {
-    label: "Backend & cloud",
+    label: "Web & cloud",
     items:
-      "Docker · Kubernetes · AWS (Lambda, DynamoDB, S3) · GCP · Spring Boot · FastAPI · React · REST · OAuth · CI/CD",
+      "Docker · Kubernetes · AWS (Lambda, DynamoDB, S3) · GCP · Spring Boot · FastAPI · Next.js · React · OAuth · CI/CD",
   },
   {
     label: "AI & ML",
-    items:
-      "Agentic AI · Multi-agent systems · RAG · MCP · LangGraph · Google ADK · scikit-learn · Vector search · LLM evaluation · Langfuse",
+    items: "LangGraph · Google ADK · MCP · RAG · Vector search · Ollama · scikit-learn · LLM evaluation · Langfuse",
   },
   {
-    label: "Practices",
-    items:
-      "TDD (PyTest) · Agile · System design · SOLID · Data pipelines · Production monitoring · Regression testing",
+    label: "Data & practices",
+    items: "PostgreSQL · DuckDB · TDD (PyTest) · System design · Regression testing · Production monitoring",
   },
 ];
 

@@ -36,13 +36,13 @@ function runCommand(raw: string, downloadCv: () => void): string[] | null {
       return HELP_LINES;
     case "whoami":
       return [
-        "Hey, I'm Patrick. I'm 21 and in my final year of Computer Science at NUIG. I love building things and driving projects.",
+        "Hey, I'm Patrick. I'm 21 and in my final year of Computer Science at the University of Galway. I love building things and driving projects.",
         "I'm fascinated by AI as a technology and its potential positive applications on the world.",
         "I spend my time between work, college, running, meeting friends, and spending time with family.",
       ];
     case "about":
       return [
-        "I think AI will change what's possible for a lot of people — that's why I keep up to date with the latest and throw myself into experimenting when new breakthroughs come out.",
+        "I think AI will change what's possible for a lot of people, so I keep up with it and throw myself into experimenting when something new comes out.",
         "This week I'm working on my final year project and college assignments.",
       ];
     case "experience":
@@ -166,13 +166,9 @@ export default function Terminal() {
     <section id="terminal" className="border-t border-rule px-6 py-20 sm:px-10">
       <div className="mx-auto max-w-[1180px]">
         <Reveal>
-          <div className="mb-10 flex items-center gap-2 text-[13px] font-medium text-ink-mute">
-            <span className="h-1.5 w-1.5 rounded-full bg-blue" />
-            Terminal
-          </div>
           <h2 className="text-2xl font-bold tracking-[-0.01em] sm:text-3xl">Poke around</h2>
-          <p className="mt-3 max-w-[60ch] text-[15px] leading-relaxed text-ink-soft">
-            A small shell into the content on this page. Type <code className="font-mono">help</code> to start.
+          <p className="mt-2 max-w-[60ch] text-[15px] leading-relaxed text-ink-soft">
+            A small shell for exploring this page. Type <code className="font-mono">help</code> to start.
           </p>
         </Reveal>
 

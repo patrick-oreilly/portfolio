@@ -6,11 +6,7 @@ export default function Trajectory() {
     <section id="trajectory" className="border-t border-rule px-6 py-20 sm:px-10">
       <div className="mx-auto max-w-[1180px]">
         <Reveal>
-          <div className="mb-10 flex items-center gap-2 text-[13px] font-medium text-ink-mute">
-            <span className="h-1.5 w-1.5 rounded-full bg-green" />
-            Experience
-          </div>
-          <h2 className="text-2xl font-bold tracking-[-0.01em] sm:text-3xl">Internships and coursework</h2>
+          <h2 className="text-2xl font-bold tracking-[-0.01em] sm:text-3xl">Experience</h2>
         </Reveal>
 
         <div className="relative mt-12 flex flex-col gap-10">

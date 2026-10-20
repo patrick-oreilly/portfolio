@@ -1,18 +1,10 @@
-const SPECIALISTS = [
-  "Architecture",
-  "Code quality",
-  "Testing",
-  "Performance",
-  "Usability",
-  "Accessibility",
-  "Documentation",
-];
+const SPECIALISTS = ["Correctness", "Security", "Tests", "Architecture & docs"];
 
 export default function FypArchitectureDiagram() {
   return (
-    <div aria-hidden className="flex flex-col items-center gap-3 bg-white px-6 py-8">
+    <div aria-hidden className="flex flex-col items-center justify-center gap-3 border-b border-rule bg-white px-6 py-8">
       <div className="rounded-md border border-rule-strong bg-paper px-4 py-2 font-mono text-[11px] text-ink-mute">
-        buggy submission
+        repo (Docker sandbox)
       </div>
       <div className="h-6 w-px bg-rule-strong" />
       <div className="flex flex-wrap justify-center gap-2">
@@ -27,11 +19,11 @@ export default function FypArchitectureDiagram() {
       </div>
       <div className="h-6 w-px bg-rule-strong" />
       <div className="rounded-md border border-rule-strong bg-paper px-4 py-2 font-mono text-[11px] text-ink-mute">
-        coordinator agent
+        coordinator
       </div>
       <div className="h-6 w-px bg-rule-strong" />
       <div className="rounded-md border border-green-text bg-green-soft px-4 py-2 font-mono text-[11px] font-medium text-green-text">
-        diagnosis
+        ranked findings
       </div>
     </div>
   );

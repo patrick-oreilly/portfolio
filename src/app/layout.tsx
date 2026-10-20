@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 const siteUrl = "https://www.patrickoreilly.dev";
 const siteDescription =
-  "Patrick O'Reilly, final-year computer science student building AI systems. Interning at HPE, with selected work in production AI and LLM evaluation.";
+  "Final-year CS student at the University of Galway and AI intern at HPE. Projects include Taxi Chat, an LLM chatbot over 1.79 billion NYC taxi trips that declines questions it can't answer.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

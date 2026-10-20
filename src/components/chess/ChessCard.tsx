@@ -21,13 +21,9 @@ const ChessGame = dynamic(loadGame, {
 });
 
 // Opening and closing are one view transition: the card's outline morphs
-// between sizes while its contents hand over, and the card below slides (see
-// the view-transition rules in globals.css). Browsers without view
+// between sizes while its contents hand over, and the cards around it slide
+// (see the view-transition rules in globals.css). Browsers without view
 // transitions, and reduced motion, get an instant switch.
-//
-// The card spans the whole row and narrows itself to one column when closed,
-// so this relies on it sitting alone on its row, as the first ongoing project
-// before the full-width FYP card.
 const MORPH_MS = 560;
 
 export default function ChessCard({ p, delayMs }: { p: Project; delayMs: number }) {
@@ -77,20 +73,19 @@ export default function ChessCard({ p, delayMs }: { p: Project; delayMs: number 
   });
 
   return (
-    <Reveal delayMs={delayMs} className="md:col-span-2">
+    <Reveal delayMs={delayMs} className={open ? "md:col-span-2" : ""}>
       <ViewTransition name="chess-card" default="none" update="card-morph">
         <article
+          id={`project-${p.slug}`}
           ref={cardRef}
-          className={`flex w-full flex-col overflow-hidden rounded-xl border border-rule bg-paper-raised scroll-mt-24 ${
-            open ? "" : "md:w-[calc(50%-12px)]"
-          }`}
+          className="flex h-full w-full flex-col overflow-hidden rounded-xl border border-rule bg-paper-raised scroll-mt-24"
         >
           {/* The text is its own layer, so it stays readable through the morph. */}
           <ViewTransition name="chess-card-text" default="none" update="card-text">
             <div className="flex flex-1 flex-col">
               <ProjectCardBody
                 p={p}
-                hideEmptyFigure
+                hideEmptyFigure={open}
                 actions={
                   <button
                     ref={playRef}

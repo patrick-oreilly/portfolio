@@ -30,7 +30,8 @@ export default function AboutSection() {
                   Public speaking
                 </div>
                 <p className="text-[15px] leading-relaxed text-ink-soft">
-                  I gave a talk at ATU on what HPE taught me, including that engineering is about much more than the code.
+                  I gave a talk at ATU about what it&apos;s like to work at HPE, what I&apos;ve learned in industry so far, and
+                  how our intern programme works.
                 </p>
               </div>
               <div className="w-full shrink-0 sm:w-[420px]">
