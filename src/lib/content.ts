@@ -124,7 +124,7 @@ export const projects: Project[] = [
     video: {
       src: "/projects/chess-coach-demo.mp4",
       poster: "/projects/chess-coach-demo-poster.jpg",
-      label: "Screen recording: Chess Coach steps through the mistakes in one of my games, compares my move with Stockfish's side by side, shows a drill built from a blunder with the best move marked, and opens the leak matrix of my openings and recurring mistakes.",
+      label: "Screen recording: Chess Coach steps through the mistakes in my games, opens the list of analysed games, solves a drill built from one of my blunders and checks the answer against Stockfish, then opens the leak matrix of my openings and recurring mistakes.",
     },
     featured: true,
   },
