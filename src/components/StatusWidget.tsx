@@ -70,7 +70,7 @@ export default function StatusWidget() {
 
   return (
     <div
-      className="w-full max-w-[340px] rounded-xl border border-rule bg-paper-raised shadow-sm"
+      className="w-full max-w-[400px] rounded-xl border border-rule bg-paper-raised shadow-sm"
       onMouseEnter={() => setInteracting(true)}
       onMouseLeave={() => setInteracting(false)}
       onFocusCapture={() => setInteracting(true)}
