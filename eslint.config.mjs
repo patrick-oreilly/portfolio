@@ -14,6 +14,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Vendored third-party engine builds (minified); see public/engines/README.txt.
     "public/engines/**",
+    // MapLibre's worker, copied verbatim so Next does not rename the chunk.
+    "public/taxi-chat/maplibre-gl-worker.mjs",
   ]),
 ]);
 

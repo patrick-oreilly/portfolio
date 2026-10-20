@@ -27,15 +27,20 @@ npm run lint
 ```
 src/app/layout.tsx       metadata, viewport colours, Person structured data
 src/app/page.tsx         section order
+src/app/taxi-chat/       live Taxi Chat route (ported frontend + scoped CSS)
+src/app/api/taxi-chat/   SSE and stats proxies to the FastAPI service
 src/app/globals.css      design tokens (light + dark), base styles
 src/app/opengraph-image.tsx  generated 1200x630 share card
 src/app/robots.ts        robots.txt
 src/app/sitemap.ts       sitemap.xml
 src/components/          one file per page section, plus the theme toggle
+src/components/taxi-chat/  Taxi Chat conversation, map, trace and charts
 src/lib/content.ts       all page copy and project data
+src/lib/taxi-chat.ts     backend URL and SSE error helpers
 src/lib/theme.ts         theme storage key and palette
 src/lib/boot.ts          the inline pre-paint script
 content/copy.md          long-form source copy
+public/taxi-chat/        taxi zone geometry and the MapLibre worker
 public/                  resume PDF, photos, project figures
 ```
 
@@ -70,6 +75,37 @@ Play is pressed; the opening book is built from my rated rapid games by
 
 The code is GPL-3.0-or-later, because chessground, Stockfish and Maia are GPL. The
 site's written content, images and opening book are not; see [NOTICE.md](NOTICE.md).
+
+## Taxi Chat demo
+
+`/taxi-chat` is the live interface for the separate
+[taxi-chat](https://github.com/patrick-oreilly/taxi-chat) service. It is a
+client-side port of that project's Vite frontend; the zone geometry and the
+MapLibre worker live in [public/taxi-chat/](public/taxi-chat/).
+
+The browser only talks to this site. Two Route Handlers proxy to the FastAPI
+backend:
+
+- `/api/taxi-chat/ask` forwards the server-sent events from `/api/ask`
+- `/api/taxi-chat/stats` reads `/api/stats`
+
+Set `TAXI_CHAT_API_URL` to the backend's base URL (for example
+`https://taxi-chat.example.com`). In development it defaults to
+`http://127.0.0.1:8000`, so the local setup is:
+
+```bash
+# terminal 1
+cd ../taxi-chat
+uv run --env-file .env uvicorn taxichat.server:app
+
+# terminal 2
+cd ../portfolio
+npm run dev
+```
+
+Production must set `TAXI_CHAT_API_URL`; without it the page still renders but
+asks return a connection error. The Taxi Chat README covers the Docker and
+Fly.io deployment, including the DuckDB data volume.
 
 ## Theming
 
