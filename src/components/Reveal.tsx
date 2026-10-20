@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 export default function Reveal({
   children,
@@ -12,6 +12,9 @@ export default function Reveal({
   delayMs?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  // State, not a class added by hand: a parent that changes `className` makes
+  // React rewrite the attribute, which would drop a hand-added class.
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     // Tells the boot script React is alive, so it leaves the .js class (and with it
@@ -27,16 +30,14 @@ export default function Reveal({
     // content, so show it immediately and skip the entrance animation.
     const rect = el.getBoundingClientRect();
     if (rect.top < window.innerHeight && rect.bottom > 0) {
-      el.classList.add("is-visible");
+      setVisible(true);
       return;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          const timer = setTimeout(() => {
-            el.classList.add("is-visible");
-          }, delayMs);
+          const timer = setTimeout(() => setVisible(true), delayMs);
           observer.unobserve(el);
           return () => clearTimeout(timer);
         }
@@ -49,7 +50,7 @@ export default function Reveal({
   }, [delayMs]);
 
   return (
-    <div ref={ref} className={`reveal ${className}`}>
+    <div ref={ref} className={`reveal ${visible ? "is-visible" : ""} ${className}`}>
       {children}
     </div>
   );
