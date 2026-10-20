@@ -121,12 +121,11 @@ export const projects: Project[] = [
       "DeepSeek writes a short explanation of each mistake. Without an API key it falls back to Stockfish's own lines.",
     ],
     link: "https://github.com/patrick-oreilly/chess-coach",
-    images: [
-      {
-        src: "/projects/chess-coach-screenshot.png",
-        alt: "Chess Coach game review showing Stockfish 18 evaluation, move diff arrows, and coaching diagnosis",
-      },
-    ],
+    video: {
+      src: "/projects/chess-coach-demo.mp4",
+      poster: "/projects/chess-coach-demo-poster.jpg",
+      label: "Screen recording: Chess Coach steps through the mistakes in one of my games, compares my move with Stockfish's side by side, shows a drill built from a blunder with the best move marked, and opens the leak matrix of my openings and recurring mistakes.",
+    },
     featured: true,
   },
   {
