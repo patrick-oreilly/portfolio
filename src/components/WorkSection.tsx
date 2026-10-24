@@ -9,7 +9,8 @@ function ProjectCard({ p, delayMs }: { p: Project; delayMs: number }) {
     <Reveal delayMs={delayMs}>
       <article
         id={`project-${p.slug}`}
-        className="flex h-full flex-col overflow-hidden rounded-xl border border-rule bg-paper-raised scroll-mt-24"
+        data-glow
+        className="glow-card flex h-full flex-col overflow-hidden rounded-xl border border-rule bg-paper-raised scroll-mt-24"
       >
         <ProjectCardBody p={p} />
       </article>

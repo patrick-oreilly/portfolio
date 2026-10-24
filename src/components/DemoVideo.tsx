@@ -47,7 +47,7 @@ export default function DemoVideo({ src, poster, label }: { src: string; poster:
         type="button"
         onClick={() => setUserPaused(playing)}
         aria-label={playing ? "Pause demo" : "Play demo"}
-        className="absolute bottom-3 right-3 rounded-full bg-black/60 px-3 py-1 font-mono text-[11px] text-white backdrop-blur transition-colors hover:bg-black/80"
+        className="absolute bottom-3 right-3 inline-flex min-h-10 items-center rounded-full bg-black/60 px-4 font-mono text-[12px] text-white backdrop-blur transition-colors hover:bg-black/80"
       >
         {playing ? "Pause" : "Play"}
       </button>

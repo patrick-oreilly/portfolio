@@ -18,7 +18,7 @@ export default function Footer() {
           </div>
           <div className="flex flex-wrap items-center gap-2 text-sm">
             <a href={`mailto:${references.email}`} className={contactLink}>
-              Email
+              {references.email}
             </a>
             <a href={references.github} target="_blank" rel="noreferrer" className={contactLink}>
               GitHub
@@ -37,7 +37,7 @@ export default function Footer() {
       </Reveal>
       <div className="mx-auto mt-14 flex max-w-[1180px] flex-col gap-2 border-t border-rule pt-6 text-[12px] text-ink-mute sm:flex-row sm:items-center sm:justify-between">
         <span>© 2026 Patrick O&rsquo;Reilly · Final-Year CS Student</span>
-        <span className="font-mono">GitHub · LinkedIn · Next.js · Tailwind</span>
+        <span className="font-mono">Built with Next.js · Tailwind</span>
       </div>
     </footer>
   );

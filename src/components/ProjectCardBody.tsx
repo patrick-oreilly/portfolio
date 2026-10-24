@@ -59,7 +59,7 @@ export default function ProjectCardBody({
           }`}
         >
           {p.images.map((img) => (
-            <div key={img.src} className="relative aspect-[16/10] bg-white">
+            <div key={img.src} className="relative aspect-[16/10] bg-paper-raised">
               <Image
                 src={img.src}
                 alt={img.alt}
@@ -95,20 +95,20 @@ export default function ProjectCardBody({
           <p className="text-[15px] font-medium leading-snug text-ink">{p.question}</p>
         )}
         <p className="text-[14px] leading-relaxed text-ink-mute">{p.summary}</p>
-        {p.body?.map((para) => (
-          <p key={para.slice(0, 24)} className="text-[13.5px] leading-relaxed text-ink-soft">
+        {p.body?.map((para, i) => (
+          <p key={i} className="text-[14px] leading-relaxed text-ink-soft">
             {withLinks(para)}
           </p>
         ))}
         <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-3">
-          <div className="font-mono text-[11px] text-ink-mute">{p.stack}</div>
+          <div className="font-mono text-[12px] text-ink-soft">{p.stack}</div>
           <div className="flex flex-wrap items-center gap-2">
             {actions}
             {p.demo &&
               (p.demo.href.startsWith("/") ? (
                 <Link
                   href={p.demo.href}
-                  className="rounded-full bg-blue px-4 py-1.5 text-[12.5px] font-semibold text-white transition-transform hover:-translate-y-0.5"
+                  className="rounded-full bg-blue inline-flex min-h-10 items-center px-4 text-[13px] font-semibold text-white transition-transform hover:-translate-y-0.5"
                 >
                   {p.demo.label}
                 </Link>
@@ -117,7 +117,7 @@ export default function ProjectCardBody({
                   href={p.demo.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-full bg-blue px-4 py-1.5 text-[12.5px] font-semibold text-white transition-transform hover:-translate-y-0.5"
+                  className="rounded-full bg-blue inline-flex min-h-10 items-center px-4 text-[13px] font-semibold text-white transition-transform hover:-translate-y-0.5"
                 >
                   {p.demo.label}
                 </a>
@@ -127,7 +127,7 @@ export default function ProjectCardBody({
                 href={p.secondaryLink.href}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-rule-strong px-4 py-1.5 text-[12.5px] font-semibold text-ink transition-colors hover:border-ink"
+                className="rounded-full border border-rule-strong inline-flex min-h-10 items-center px-4 text-[13px] font-semibold text-ink transition-colors hover:border-ink"
               >
                 {p.secondaryLink.label}
               </a>
@@ -137,7 +137,7 @@ export default function ProjectCardBody({
                 href={p.link}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full bg-ink px-4 py-1.5 text-[12.5px] font-semibold text-paper transition-transform hover:-translate-y-0.5"
+                className="rounded-full bg-ink inline-flex min-h-10 items-center px-4 text-[13px] font-semibold text-paper transition-transform hover:-translate-y-0.5"
               >
                 Code →
               </a>

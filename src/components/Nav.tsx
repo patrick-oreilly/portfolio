@@ -16,6 +16,22 @@ const links = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("");
+
+  // Highlight the section crossing a band near the top of the viewport.
+  useEffect(() => {
+    const els = links
+      .map((l) => document.querySelector(l.href))
+      .filter((el): el is Element => el !== null);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) if (e.isIntersecting) setActive(`#${e.target.id}`);
+      },
+      { rootMargin: "-20% 0px -70% 0px" },
+    );
+    els.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -32,7 +48,12 @@ export default function Nav() {
         <span className="font-semibold tracking-[-0.01em]">Patrick O&rsquo;Reilly</span>
         <div className="hidden items-center gap-7 text-sm text-ink-mute md:flex">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="transition-colors hover:text-ink">
+            <a
+              key={l.href}
+              href={l.href}
+              aria-current={active === l.href ? "true" : undefined}
+              className="transition-colors hover:text-ink aria-[current=true]:text-ink aria-[current=true]:underline aria-[current=true]:decoration-blue aria-[current=true]:decoration-2 aria-[current=true]:underline-offset-8"
+            >
               {l.label}
             </a>
           ))}

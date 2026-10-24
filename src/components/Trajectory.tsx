@@ -15,6 +15,7 @@ export default function Trajectory() {
             <Reveal key={entry.id} delayMs={i * 70}>
               <div className="relative pl-9">
                 <span
+                  aria-hidden
                   className={`absolute left-0 top-1.5 h-[11px] w-[11px] rounded-full border-2 ${
                     entry.current ? "border-green-text bg-green-soft" : "border-rule-strong bg-paper"
                   }`}
@@ -27,7 +28,7 @@ export default function Trajectory() {
                       current
                     </span>
                   )}
-                  <span className="ml-auto font-mono text-[12px] text-ink-mute">{entry.dates}</span>
+                  <span className="font-mono text-[12px] tabular-nums text-ink-mute sm:ml-auto">{entry.dates}</span>
                 </div>
                 <p className="mt-1.5 max-w-[65ch] text-sm leading-relaxed text-ink-mute">{entry.summary}</p>
                 {entry.bullets && (
